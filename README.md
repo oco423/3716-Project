@@ -1,3 +1,3 @@
 # 3716-Project
 
-Testing. This is the CS3716 Project being worked on.
+This is a repository created for use with our CS3716 project at Memorial University of Newfoundland. Created November 16, 2015. Testing phase.
