@@ -1,15 +1,37 @@
 package project;
 
 public class Student {
+	
 	private String name;
+	private String major;	
 	private int age;
-	private String major;
 	private int sid;
+	
+	private memberRole memRole = null;
+	private boardMemberRole boardRole = null;
+	private presidentRole presRole = null;
 
 	public Student(String name, String major, int age, int sid) {
+		
 		this.name = name;
-		this.age = age;
 		this.major = major;
+		this.age = age;	
+		this.sid = sid;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public int getSid() {
+		return sid;
+	}
+
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 
@@ -28,21 +50,17 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-	public String getMajor() {
-		return major;
+	
+	public boolean isMember() {
+		return !(memRole == null);
 	}
-
-	public void setMajor(String major) {
-		this.major = major;
+	
+	public boolean isBoardMember() {
+		return !(boardRole == null);
 	}
-
-	public int getSid() {
-		return sid;
-	}
-
-	public void setSid(int sid) {
-		this.sid = sid;
+	
+	public boolean isPres() {
+		return !(presRole == null);
 	}
 
 }

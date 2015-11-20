@@ -1,9 +1,11 @@
 package project;
 
-public class Member extends Student {
+public class Member extends personDecorator {
 
-	public Member(String name, String major, int age, int sid) {
-		super(name, major, age, sid);
+	Person person;
+	
+	public Member(Person p) {
+		person = p;
 	}
 
 }
