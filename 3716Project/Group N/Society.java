@@ -66,14 +66,15 @@ public class Society{
     private String major;
     private String description;
     private ArrayList<Member> members;
+    private ArrayList<BoardMember> board; //map???
     private boolean sanctioned;
+    private President president;
     
 	Society(Student s, String n, String info, double id, String m, String desc){
 		if (s.isStudent()){
             Member mem = new Member(s);
-            President p = new President(mem);
+            president = new President(mem);
             members = new ArrayList<Member>();
-			members.add(p);
 			name = n;
 			contact_info = info;
 			president_id = id;
@@ -100,8 +101,14 @@ public class Society{
 	ArrayList<Member> getMembers(){
         return members;
 	}
+	ArrayList<BoardMember> getBoard(){
+        return board;
+	}
 	boolean getSanctionStatus(){
 		return sanctioned;
+	}
+	President getPresident(){
+		return president;
 	}
 	void setName(String n){
 		name = n;
@@ -118,7 +125,7 @@ public class Society{
 	void addMember(Student s){
         String application = "denied";
 		if (s.isStudent()){
-            for (BoardMember x:getMembers()){
+            for (BoardMember x:getBoard()){
                 if (x.reviewApplication(s)){
                     Member m = new Member(s);
                     members.add(m);
@@ -129,6 +136,9 @@ public class Society{
 			System.out.println(s.getName() + " is not recognized as a student at MUN and therefore cannot join the society " + this.getName() + ".");
         }
         System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and " + application + ".");
+    }
+	void addBoardMember(BoardMember b){
+        board.add(b);
     }
 	void removeMember(Member m){
 		//only board members can call this method
@@ -144,6 +154,9 @@ public class Society{
 		}else{
 			sanctioned = false;
 		}
+	}
+	void setPresident(Member m){
+        president = new President(m);
 	}
 	void Promote(){
 		//Post society poster (filename) on TV screens in University Centre and around campus

@@ -73,20 +73,17 @@ public class Member extends Student{
         return eligible;
     }
     void setPresident(Society s){
-        for (President x:s.getMembers()){
-            Member m = new Member(x);
-            s.removeMember(x);
-            s.addMember(m);
-        }
-        President p = new President(this);
+    	Member m = new Member(s.getPresident());
+        s.addMember(m);
+        s.setPresident(this);
         s.removeMember(this);
-        s.addMember(p);
         president = true;
 	}
 	void setBoardMember(Society s){
         BoardMember b = new BoardMember(this);
         s.removeMember(this);
         s.addMember(b);
+        s.addBoardMember(b);
         boardMember = true;
 	}
 	void Declare(){
