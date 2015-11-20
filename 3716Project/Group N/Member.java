@@ -45,7 +45,7 @@ public class Member extends Student{
     private boolean president;
     private boolean boardMember;
     private boolean eligible;
-
+    private int votes;
     Member(){
         super.setName(null);
         super.setID(0);
@@ -53,8 +53,8 @@ public class Member extends Student{
         president = false;
         boardMember = false;
         eligible = false;
+        votes = 0;
     }
-    
 	Member(Student s){
 		super.setName(s.getName());
 		super.setID(s.getID());
@@ -71,6 +71,9 @@ public class Member extends Student{
     }
     boolean isEligible(){
         return eligible;
+    }
+    int getVotes(){
+    	return votes;
     }
     void setPresident(Society s){
     	Member m = new Member(s.getPresident());
@@ -92,11 +95,16 @@ public class Member extends Student{
     void Withdraw(){
         eligible = false;
     }
-    void createEvent(Society s, String name, String date, String time, String location, String purpose){
-        s.haveEvent(name, date, time, location, purpose);
-    }
     void Promote(Society s){
         s.Promote();
+    }
+    void addVote(){
+    	votes += 1;
+    }
+    void vote(ArrayList<Member> ballot){
+    	System.out.println("Enter the name of the member you are voting for:");
+    	String n = in.next();
+    	//NOT FINISHED
     }
 	void Leave(Society soc){
 		Student s = new Student(this.getName(), this.getID());

@@ -10,6 +10,9 @@ public class Election{
 		createBallot(s);
 		conductVote(s, date, p);
 	}
+	ArrayList<Member> getBallot(){
+		return ballot;
+	}
 	void createBallot(Society s){ //currently, all members declared eligible are placed on ballot
 		for (Member x:s.getMembers()){
 			if (x.isEligible()){
@@ -19,13 +22,15 @@ public class Election{
 	}
 	void conductVote(Society s, String date, double p){
 		//email every member to vote, displaying the ballot
+		for (Member m:s.getMembers()){
+			m.vote(getBallot());
+		}
 		//conduct vote via email response, with date as the deadline
-        Member winner;
+        Member winner = new Member();
         if (winner.getID() != p){ //if the new President is not the same as before
             for (Member x:s.getMembers()){
                 if (winner.getID() == x.getID()){
                     x.setPresident(s);
-                    s.setPresidentID(x.getID());
                 }
             }
         }
