@@ -19,12 +19,11 @@ public class Test_Main{
 		System.out.println(soc1.getName());
 		//System.out.println(soc1.getPresident().getName());
 		
-		stu1.getPresRole().setSocietyFee(soc1, 54367);
+		stu1.getPresRole(soc1).setSocietyFee(soc1, 54367);
 		System.out.println(soc1.getFee());
 		
 		System.out.println(stu1.getMajor());
 		
-		//adedfgnffddf   
 		
 		
 	}

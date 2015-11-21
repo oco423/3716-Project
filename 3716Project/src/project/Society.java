@@ -67,6 +67,7 @@ public class Society{
     private double fee = 0;
     private String description;
     private ArrayList<Student> members; //map???
+    private ArrayList<Student> board;
     private Student president;
     private boolean sanctioned;
     
@@ -86,39 +87,58 @@ public class Society{
 			System.out.println(Disband() + "Reason: " + s.getName() + " is not recognized as a student at MUN.");
 		}
 	}
+	
 	String getName(){
 		return name;
 	}
+	
 	String getContact(){
 		return contact_info;
 	}
+	
 	String getMajor(){
 		return major;
 	}
+	
 	ArrayList<Student> getMembers(){
         return members;
 	}
+	
 	void showMembers(){
 		for (Student x: members){
 			System.out.println(x.getName());
 		}
 	}
 	
+	ArrayList<Student> getBoard(){
+		return board;
+	}
+	
+	void showBoard(){
+		for (Student x: board){
+			System.out.println(x.getName());
+		}
+	}
 	Student getPresident(){
 		return president;
 	}
+	
 	boolean getSanctionStatus(){
 		return sanctioned;
 	}
+	
 	void setName(String n){
 		name = n;
 	}
+	
 	void setContact(String c){
 		contact_info = c;
 	}
+	
 	void setMajor(String m){
 		major = m;
 	}
+	
 	void addMember(Student s){
 		s.setMemberRole(new memberRole());
         members.add(s);     
@@ -133,9 +153,11 @@ public class Society{
 			}
 		}
 	}
+	
 	void setPresident(Student s){
 		s.setPresRole(new presidentRole());
 	}
+	
 	void Sanction(){
 		if (members.size() >= 20){
 			sanctioned = true;
@@ -143,11 +165,13 @@ public class Society{
 			sanctioned = false;
 		}
 	}
+	
 	void Promote(){
 		//Post society poster (filename) on TV screens in University Centre and around campus
 		//Possible emails to students who may be interested
         System.out.println("Society created and promoted!");
 	}
+	
     /*void haveElection(String date){
         Election e = new Election(this, date, president.getSid());
         for (Student x:members){
@@ -156,12 +180,15 @@ public class Society{
             }
         }
     }*/
+	
     void haveMeeting(String date, String time, String location, String purpose){
         Meeting m = new Meeting(date, time, location, purpose);
     }
+    
     void haveEvent(String name, String date, String time, String location, String purpose){
         Event e = new Event(name, date, time, location, purpose);
     }
+    
   /* void collectFees(){ //optional call
         if (sanctioned){
             System.out.println("Enter society fee, for 12 months membership:");
@@ -171,6 +198,7 @@ public class Society{
             System.out.println("Society must first be sanctioned to collect fees.");
         }
     }*/
+    
 	String Disband(){
 		String message = "Society " + this.getName() + " disbanded.";
 		name = null;
@@ -189,10 +217,13 @@ public class Society{
 		}
 		return false;
 	}
+	
 	public double getFee() {
 		return fee;
 	}
+	
 	public void setFee(double fee) {
 		this.fee = fee;
 	}
+	
 }
