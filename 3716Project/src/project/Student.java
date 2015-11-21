@@ -70,12 +70,37 @@ public class Student {
 		this.memRole = memRole;
 	}
 	
+	public memberRole getMemberRole(Society s) throws MemberPermissionException{
+		if (memRole == null){ throw new MemberPermissionException("Student is not a member of a society."); }
+		else if (!s.getMembers().contains(this)){ throw new MemberPermissionException("Student is not a member of this society."); }
+		else{
+			return memRole;
+		}
+	}
+	
 	public void setBoardRole(boardMemberRole boardRole) {
 		this.boardRole = boardRole;
 	}
 	
+	public boardMemberRole getBoardMemberRole(Society s) throws MemberPermissionException{
+		if (boardRole == null){ throw new MemberPermissionException("Student is not a board member of a society."); }
+		else if (!s.getBoard().contains(this)){ throw new MemberPermissionException("Student is not a board member of this society."); }
+		else{	
+			return boardRole;
+		}
+	}
+	
 	public void setPresRole(presidentRole presRole) {
 		this.presRole = presRole;
+	}
+	
+	public presidentRole getPresidentRole(Society s) throws MemberPermissionException{
+		if (presRole == null){ throw new MemberPermissionException("Student is not a president of a society."); }
+		else if (s.getPresident() != this){ throw new MemberPermissionException("Student is not president of this society."); }
+		else{	
+			
+			return presRole;
+		}
 	}
 	
 }
