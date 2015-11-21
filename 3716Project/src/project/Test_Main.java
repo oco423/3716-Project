@@ -1,25 +1,31 @@
-import java.lang.*;
-import java.util.*;
+package project;
 
 public class Test_Main{
 	public static void main(String[] args){
-		Scanner in = new Scanner(System.in);
 		String name;
 		int id;
-		//String major;
-		System.out.println("Name: ");
-		name = in.next();
-		System.out.println("ID: ");
-		id = in.nextInt();
-		//System.out.println("Major: ");
-		//major = in.next();
-		Student student = new Student(name, "test_major", 21, id);
-		System.out.println("Student object created. Creating Society. All strings: 'testing'. ");
-		Society society = new Society(student, "testing", "testing", "testing", "testing");
-		Student s1 = new Student(name, "test_major1", 20, id);
-		Student s2 = new Student(name, "test_major2", 23, id);
-		society.addMember(s1);
-		society.addMember(s2);
-		society.showMembers();
+		name = "Lucas";
+		id = 40056;
+		String major = "CS";
+		int age = 20;
+		Student stu1 = new Student(name, major, age, id);
+		Student stu2 = new Student("Sam", "test_major", 21, 4356);
+		Society soc1 = new Society(stu1, "testing", "testing", "testing", "testing");
+		soc1.addMember(stu1);
+		//soc1.addMember(stu2);
+		soc1.showMembers();
+		System.out.println("Is " + stu2.getName() + " a member of " + soc1.getName() + " ?" + soc1.isMember(stu2));
+		
+		System.out.println(soc1.getName());
+		//System.out.println(soc1.getPresident().getName());
+		
+		stu1.getPresRole().setSocietyFee(soc1, 54367);
+		System.out.println(soc1.getFee());
+		
+		System.out.println(stu1.getMajor());
+		
+		//adedfgnffddf   
+		
+		
 	}
 }
