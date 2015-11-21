@@ -5,8 +5,15 @@ public class presidentRole {
 	void setSocietyFee(Society soc, double f){
 		soc.setFee(f);
 	}
-	void Appoint(Student s){
-		s.setBoardRole(new boardMemberRole());
+	void Appoint(Student s, Society soc){
+		if (soc.getMembers().contains(s)){
+			soc.addBoardMember(s);
+		}
+	}
+	void demoteBoard(Student s, Society soc){
+		if (s.isBoardMember()){
+			soc.removeBoardMember(s);
+		}
 	}
     /*void callElection(Society s, String date){
         s.haveElection(date);

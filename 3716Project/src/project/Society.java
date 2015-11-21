@@ -57,8 +57,7 @@ package project;
  
  ******************************************************************************************/
  
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 public class Society{
     
     Scanner in = new Scanner(System.in);
@@ -81,11 +80,9 @@ public class Society{
             members.add(s);
             board = new ArrayList<Student>();
             board.add(s);
-            
 			name = n;
 			contact_info = info;
 			major = m;
-			president = s;
 			description = desc;
 			sanctioned = false;
 			Promote();
@@ -148,16 +145,28 @@ public class Society{
 	void addMember(Student s){
 		s.setMemberRole(new memberRole());
         members.add(s);     
-        System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted");
+        System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted.");
     }
+	
+	void addBoardMember(Student s){
+		//called by presidentRole.appoint
+		s.setBoardRole(new boardMemberRole());
+		board.add(s);
+		System.out.println(s.getName() + " has been appointed to the board of " + this.getName() + ".");
+	}
 	
 	void removeMember(Student s){
 		//only board members can call this method
-        for (Student x:members){
-			if (x.getSid() == s.getSid()){
-				s.setMemberRole(null);
-			}
-		}
+        if (this.getMembers().contains(s)){
+        	members.remove(s);
+        }
+	}
+	
+	void removeBoardMember(Student s){
+		//only the president can call this method
+		if (this.getBoard().contains(s)){
+        	board.remove(s);
+        }
 	}
 	
 	void setPresident(Student s){
@@ -189,7 +198,6 @@ public class Society{
 	
     void haveMeeting(String date, String time, String location, String purpose){
         Meeting m = new Meeting(date, time, location, purpose);
-        System.out.println(m.getTime());
     }
     
     void haveEvent(String name, String date, String time, String location, String purpose){
