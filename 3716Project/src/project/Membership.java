@@ -1,28 +1,29 @@
 import java.lang.*;
 import java.util.*;
-import java.util.Date;
+
 
 public class Membership {
 
-    private boolean feesPaid;
-    private Date dateJoined;
     private Society society;
     private Student student;
+    private boolean payFee;
+    private String joiningDate;
+    
 
    
     public Membership(Society society, Student student) {
-        feesPaid = false;
-        dateJoined = new Date();
+        payFee = false;
+        this.joiningDate = joiningDate;
         this.society = society;
         this.student = student;
     }
 
     public boolean isFeesPaid() {
-        return feesPaid;
+        return payFee;
     }
 
-    public Date getDateJoined() {
-        return dateJoined;
+    public String getJoiningDate() {
+        return joiningDate;
     }
 
     public Society getSociety() {
@@ -33,12 +34,13 @@ public class Membership {
         return student;
     }
 
-    public void setFeesPaid(boolean feesPaid) {
-        this.feesPaid = feesPaid;
+    public void setFeesPaid(boolean payFee)
+    {
+        this.payFee = payFee;
     }
 
-    public void setDateJoined(Date dateJoined) {
-        this.dateJoined = dateJoined;
+    public void setDateJoined(String joiningDate ){
+        this.joiningDate = joiningDate;
     }
 
     public void setSociety(Society society) {
