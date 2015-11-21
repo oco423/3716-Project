@@ -19,7 +19,7 @@ public class Membership {
         this.joiningDate = joiningDate;
         this.society = society;
         this.student = student;
-        this.membersCOunt=membersCount;
+        this.membersCount=membersCount;
     }
 
     public boolean isFeesPaid() {

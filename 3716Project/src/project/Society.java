@@ -1,4 +1,6 @@
+package project;
 /**************************************************************************************************
+
     Society is a class which acts as a go between in all interactions between
     students/members and their derivatives (board members, president).
  
@@ -55,7 +57,6 @@
  
  ******************************************************************************************/
  
-import java.lang.*;
 import java.util.*;
 public class Society{
     
@@ -63,10 +64,9 @@ public class Society{
 	private String name;
     private String contact_info;
     private String major;
-    private String description;
     private double fee = 0;
-    private ArrayList<Student> members;
-    private ArrayList<Student> board; //map???
+    private String description;
+    private ArrayList<Student> members; //map???
     private Student president;
     private boolean sanctioned;
     
@@ -95,20 +95,15 @@ public class Society{
 	String getMajor(){
 		return major;
 	}
-	double getFee(){
-		return fee;
-	}
 	ArrayList<Student> getMembers(){
         return members;
 	}
 	void showMembers(){
-		for (Student x:members){
+		for (Student x: members){
 			System.out.println(x.getName());
 		}
 	}
-	ArrayList<Student> getBoard(){
-        return board;
-	}
+	
 	Student getPresident(){
 		return president;
 	}
@@ -124,27 +119,12 @@ public class Society{
 	void setMajor(String m){
 		major = m;
 	}
-	void setFee(double f){
-		fee = f;
-	}
 	void addMember(Student s){
-        String application = "denied";
-		if (s.isStudent()){
-            //for (BoardMember x:getBoard()){
-                //if (x.reviewApplication(s)){
-					s.setMemberRole(new memberRole());
-                    members.add(s);
-                    application = "accepted";
-                //}
-            //}
-		}else{
-			System.out.println(s.getName() + " is not recognized as a student at MUN and therefore cannot join the society " + this.getName() + ".");
-        }
-        System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and " + application + ".");
+		s.setMemberRole(new memberRole());
+        members.add(s);     
+        System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted");
     }
-	void addBoardMember(Student s){
-        board.add(s);
-    }
+	
 	void removeMember(Student s){
 		//only board members can call this method
         for (Student x:members){
@@ -182,7 +162,7 @@ public class Society{
     void haveEvent(String name, String date, String time, String location, String purpose){
         Event e = new Event(name, date, time, location, purpose);
     }
-    void collectFees(){ //optional call
+  /* void collectFees(){ //optional call
         if (sanctioned){
             System.out.println("Enter society fee, for 12 months membership:");
             double fee = in.nextDouble();
@@ -190,7 +170,7 @@ public class Society{
         }else{
             System.out.println("Society must first be sanctioned to collect fees.");
         }
-    }
+    }*/
 	String Disband(){
 		String message = "Society " + this.getName() + " disbanded.";
 		name = null;
@@ -200,5 +180,19 @@ public class Society{
 		members = null;
 		president = null;
 		return message;
+	}
+	
+	public boolean isMember(Student s){
+		for(Student i : members) {
+			if (s.getName().equals(i.getName()))
+				return true;
+		}
+		return false;
+	}
+	public double getFee() {
+		return fee;
+	}
+	public void setFee(double fee) {
+		this.fee = fee;
 	}
 }
