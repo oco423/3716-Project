@@ -99,7 +99,20 @@ public class Student{
 		}
 		return b;
 	}
+	public static void main(String[] args){
+		System.out.println("Enter your name");
+		String name = in.nextLine();
+		System.out.println("Enter your Student number");
+		double student_id = in.nextDouble();
+		System.out.println("Enter what your major is");
+		String major = in.nextLine();
+		Student student = new Student(name, student_id, major);
+	}
+	
 }
+
+
+
 
 /*
 public class President extends Student{ //possibly the way to go, not sure

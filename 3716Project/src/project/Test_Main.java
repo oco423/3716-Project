@@ -1,7 +1,7 @@
 package project;
 
 public class Test_Main{
-	public static void main(String[] args){
+	public static void main(String[] args) throws MemberPermissionException{
 		String name;
 		int id;
 		name = "Lucas";
@@ -15,11 +15,12 @@ public class Test_Main{
 		//soc1.addMember(stu2);
 		soc1.showMembers();
 		System.out.println("Is " + stu2.getName() + " a member of " + soc1.getName() + " ?" + soc1.isMember(stu2));
+		MemberPermissionException exception = new MemberPermissionException();
 		
 		System.out.println(soc1.getName());
 		//System.out.println(soc1.getPresident().getName());
 		
-		stu1.getPresRole(soc1).setSocietyFee(soc1, 54367);
+		stu1.getPresidentRole(soc1).setSocietyFee(soc1, 54367);
 		System.out.println(soc1.getFee());
 		
 		System.out.println(stu1.getMajor());

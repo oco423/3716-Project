@@ -57,7 +57,8 @@ package project;
  
  ******************************************************************************************/
  
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 public class Society{
     
     Scanner in = new Scanner(System.in);
@@ -80,6 +81,7 @@ public class Society{
 			name = n;
 			contact_info = info;
 			major = m;
+			president = s;
 			description = desc;
 			sanctioned = false;
 			Promote();
