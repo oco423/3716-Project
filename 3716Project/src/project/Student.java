@@ -51,6 +51,9 @@ public class Student {
 		this.age = age;
 	}
 	
+	public boolean isStudent(){
+		return (getSid() != 0);
+	}
 	public boolean isMember() {
 		return !(memRole == null);
 	}

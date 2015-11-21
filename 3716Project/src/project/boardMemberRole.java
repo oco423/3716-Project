@@ -12,8 +12,8 @@ public class boardMemberRole {
     void callMeeting(Society s, String date, String time, String location, String purpose){
         s.haveMeeting(date, time, location, purpose);
     }
-    void removeMember(Society s, Member m){
-        s.removeMember(m);
+    void removeMember(Society soc, Student s){
+        soc.removeMember(s);
     }
 	
 }

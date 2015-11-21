@@ -71,10 +71,10 @@ public class Society{
     
 	Society(Student s, String n, String info, String m, String desc){
 		if (s.isStudent()){
-            s.setMemberRole(new memberRole);
-            s.setBoardRole(new boardMemberRole);
-            s.setPresRole(new presidentRole);
-            members = new ArrayList<Member>();
+            s.setMemberRole(new memberRole());
+            s.setBoardRole(new boardMemberRole());
+            s.setPresRole(new presidentRole());
+            members = new ArrayList<Student>();
 			name = n;
 			contact_info = info;
 			major = m;
@@ -94,7 +94,7 @@ public class Society{
 	String getMajor(){
 		return major;
 	}
-	ArrayList<Member> getMembers(){
+	ArrayList<Student> getMembers(){
         return members;
 	}
 	void showMembers(){
@@ -105,7 +105,7 @@ public class Society{
 	ArrayList<Student> getBoard(){
         return board;
 	}
-	President getPresident(){
+	Student getPresident(){
 		return president;
 	}
 	boolean getSanctionStatus(){
@@ -125,7 +125,7 @@ public class Society{
 		if (s.isStudent()){
             //for (BoardMember x:getBoard()){
                 //if (x.reviewApplication(s)){
-					s.setMemberRole(new memberRole);
+					s.setMemberRole(new memberRole());
                     members.add(s);
                     application = "accepted";
                 //}
@@ -141,13 +141,13 @@ public class Society{
 	void removeMember(Student s){
 		//only board members can call this method
         for (Student x:members){
-			if (x.getID() == s.getID()){
+			if (x.getSid() == s.getSid()){
 				s.setMemberRole(null);
 			}
 		}
 	}
 	void setPresident(Student s){
-		s.setPresRole(new presidentRole);
+		s.setPresRole(new presidentRole());
 	}
 	void Sanction(){
 		if (members.size() >= 20){
@@ -162,9 +162,9 @@ public class Society{
         System.out.println("Society created and promoted!");
 	}
     void haveElection(String date){
-        Election e = new Election(this, date, president.getID());
+        Election e = new Election(this, date, president.getSid());
         for (Student x:members){
-            if (x.getID() == president.getID()){
+            if (x.getSid() == president.getSid()){
                 System.out.println("The new President of the society is " + x.getName() + ".");
             }
         }

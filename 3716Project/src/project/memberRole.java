@@ -1,8 +1,11 @@
 package project;
 
+import java.util.*;
 import java.util.ArrayList;
 
 public class memberRole {
+	
+	Scanner in = new Scanner(System.in);
 	
 	private boolean eligible;
 	private int votes;
@@ -18,7 +21,7 @@ public class memberRole {
     void addVote(){
     	votes += 1;
     }
-    void vote(ArrayList<Member> ballot){
+    void vote(ArrayList<Student> ballot){
     	System.out.println("Enter the name of the member you are voting for:");
     	String n = in.next();
     	//NOT FINISHED
