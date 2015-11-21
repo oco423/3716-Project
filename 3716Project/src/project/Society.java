@@ -78,6 +78,10 @@ public class Society{
             s.setBoardRole(new boardMemberRole());
             s.setPresRole(new presidentRole());
             members = new ArrayList<Student>();
+            members.add(s);
+            board = new ArrayList<Student>();
+            board.add(s);
+            
 			name = n;
 			contact_info = info;
 			major = m;
@@ -185,6 +189,7 @@ public class Society{
 	
     void haveMeeting(String date, String time, String location, String purpose){
         Meeting m = new Meeting(date, time, location, purpose);
+        System.out.println(m.getTime());
     }
     
     void haveEvent(String name, String date, String time, String location, String purpose){

@@ -1,5 +1,5 @@
-package project;
 
+package project;
 public class boardMemberRole {
 	
 	boolean reviewApplication(Student s){
