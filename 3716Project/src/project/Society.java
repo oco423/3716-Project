@@ -64,6 +64,7 @@ public class Society{
     private String contact_info;
     private String major;
     private String description;
+    private double fee = 0;
     private ArrayList<Student> members;
     private ArrayList<Student> board; //map???
     private Student president;
@@ -94,6 +95,9 @@ public class Society{
 	String getMajor(){
 		return major;
 	}
+	double getFee(){
+		return fee;
+	}
 	ArrayList<Student> getMembers(){
         return members;
 	}
@@ -119,6 +123,9 @@ public class Society{
 	}
 	void setMajor(String m){
 		major = m;
+	}
+	void setFee(double f){
+		fee = f;
 	}
 	void addMember(Student s){
         String application = "denied";
@@ -161,14 +168,14 @@ public class Society{
 		//Possible emails to students who may be interested
         System.out.println("Society created and promoted!");
 	}
-    void haveElection(String date){
+    /*void haveElection(String date){
         Election e = new Election(this, date, president.getSid());
         for (Student x:members){
             if (x.getSid() == president.getSid()){
                 System.out.println("The new President of the society is " + x.getName() + ".");
             }
         }
-    }
+    }*/
     void haveMeeting(String date, String time, String location, String purpose){
         Meeting m = new Meeting(date, time, location, purpose);
     }
