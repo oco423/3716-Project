@@ -75,6 +75,4 @@ public class Student {
 		this.presRole = presRole;
 	}
 	
-	
-
 }
