@@ -1,4 +1,4 @@
-package project;
+
 /**************************************************************************************************
 
     Society is a class which acts as a go between in all interactions between
@@ -56,7 +56,7 @@ package project;
         outputs a short message saying the society has been disbanded
  
  ******************************************************************************************/
- 
+ package project;
 import java.util.*;
 public class Society{
     
@@ -81,6 +81,7 @@ public class Society{
             board = new ArrayList<Student>();
             board.add(s);
 			name = n;
+			president = s;
 			contact_info = info;
 			major = m;
 			description = desc;
