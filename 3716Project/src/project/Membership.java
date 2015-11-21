@@ -9,7 +9,7 @@ public class Membership {
     private Society society;
     private Student student;
 
-    // potential for change - can pay fees while joining?
+   
     public Membership(Society society, Student student) {
         feesPaid = false;
         dateJoined = new Date();
