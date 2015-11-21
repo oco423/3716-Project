@@ -8,14 +8,16 @@ public class Membership {
     private Student student;
     private boolean payFee;
     private String joiningDate;
+    private Student membersCount;
     
 
    
-    public Membership(Society society, Student student) {
+    public Membership(Society society, Student student, Student membersCount){
         payFee = false;
         this.joiningDate = joiningDate;
         this.society = society;
         this.student = student;
+        this.membersCOunt=membersCount;
     }
 
     public boolean isFeesPaid() {
@@ -49,6 +51,11 @@ public class Membership {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+    
+    // this will return the count of members in the society
+    public Student getCount(){
+        return membersCount;
     }
 
 }
