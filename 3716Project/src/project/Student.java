@@ -62,5 +62,19 @@ public class Student {
 	public boolean isPres() {
 		return !(presRole == null);
 	}
+	
+	public void setMemberRole(memberRole memRole) {
+		this.memRole = memRole;
+	}
+	
+	public void setBoardRole(boardMemberRole boardRole) {
+		this.boardRole = boardRole;
+	}
+	
+	public void setPresRole(presidentRole presRole) {
+		this.presRole = presRole;
+	}
+	
+	
 
 }

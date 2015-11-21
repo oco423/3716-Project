@@ -2,7 +2,8 @@ package project;
 
 public class presidentRole {
 	
-	public void doMemberStuff() {
+	public void doPresStuff() {
+		
 		//what do presidents do?
 	}
 	
