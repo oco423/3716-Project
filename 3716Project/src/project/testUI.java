@@ -6,12 +6,31 @@
 package project;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.AbstractListModel;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 /**
  *
  * @author Lucas
  */
-public class testUI extends javax.swing.JFrame {
+public class testUI extends JFrame {
 
 	/**
 	 * Creates new form testUI
@@ -30,31 +49,22 @@ public class testUI extends javax.swing.JFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		jPopupMenu1 = new javax.swing.JPopupMenu();
-		jMenuItem1 = new javax.swing.JMenuItem();
-		jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-		jLabel1 = new javax.swing.JLabel();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		jList1 = new javax.swing.JList<>();
-		jButton1 = new javax.swing.JButton();
-		jButton2 = new javax.swing.JButton();
-		jLabel2 = new javax.swing.JLabel();
-		jMenuBar1 = new javax.swing.JMenuBar();
-		jMenu1 = new javax.swing.JMenu();
-		jMenu2 = new javax.swing.JMenu();
+		new JPopupMenu();
+		jMenuItem1 = new JMenuItem();
+		new JCheckBoxMenuItem();
+		jLabel1 = new JLabel();
+		jScrollPane1 = new JScrollPane();
+		jList1 = new JList<>();
+		jButton1 = new JButton();
+		jButton2 = new JButton();
+		jLabel2 = new JLabel();
+		jMenuBar1 = new JMenuBar();
+		jMenu1 = new JMenu();
+		jMenu2 = new JMenu();
+		joinDialog = new testJoinDialog();
+		createDialog = new testCreateDialog();
 
-		jPopupMenu1.setLabel("Join a society");
-		jPopupMenu1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-			public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-			}
 
-			public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-			}
-
-			public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-				jPopupMenu1PopupMenuWillBecomeVisible(evt);
-			}
-		});
 
 		jMenuItem1.setText("jMenuItem1");
 		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,24 +72,15 @@ public class testUI extends javax.swing.JFrame {
 				jMenuItem1ActionPerformed(evt);
 			}
 		});
-		jPopupMenu1.add(jMenuItem1);
 
-		jCheckBoxMenuItem1.setSelected(true);
-		jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-		jPopupMenu1.add(jCheckBoxMenuItem1);
-
-		jPopupMenu1.getAccessibleContext().setAccessibleName("");
-		jPopupMenu1.getAccessibleContext().setAccessibleDescription("");
-		jPopupMenu1.getAccessibleContext().setAccessibleParent(jButton1);
-
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
 		jLabel1.setForeground(new java.awt.Color(153, 0, 0));
-		jLabel1.setText("Welcome to the Memorial University Society System!");
+		jLabel1.setText("Welcome to the Memorial University Society System");
 
 		jList1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-		jList1.setModel(new javax.swing.AbstractListModel<String>() {
+		jList1.setModel(new AbstractListModel<String>() {
 			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
 
 			public int getSize() {
@@ -95,21 +96,21 @@ public class testUI extends javax.swing.JFrame {
 		jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 		jButton1.setText("Create a society");
 		jButton1.setToolTipText("");
-		jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mousePressed(java.awt.event.MouseEvent evt) {
+		jButton1.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
 				jButton1MousePressed(evt);
 			}
 		});
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		jButton1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
 
 		jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 		jButton2.setText("Join a society");
-		jButton2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		jButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
 		});
@@ -125,75 +126,65 @@ public class testUI extends javax.swing.JFrame {
 
 		setJMenuBar(jMenuBar1);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addGap(26, 26, 26)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup().addGap(26, 26, 26)
+								.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 								.addComponent(jScrollPane1)
-								.addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING,
-										javax.swing.GroupLayout.PREFERRED_SIZE, 174,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING,
-										javax.swing.GroupLayout.PREFERRED_SIZE, 174,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+								.addComponent(jButton2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 174,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(jButton1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 174,
+										GroupLayout.PREFERRED_SIZE))
 						.addGap(171, 171, 171))
 				.addGroup(layout
 						.createSequentialGroup().addContainerGap().addComponent(jLabel1,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+ GroupLayout.PREFERRED_SIZE, 966, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(162, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addContainerGap()
-						.addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 								.addGroup(layout.createSequentialGroup().addGap(79, 79, 79)
-										.addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 102,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(42, 42, 42)
-										.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+										.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 102,
+												GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(layout.createSequentialGroup()
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51,
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 51,
 												Short.MAX_VALUE)
-										.addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 25,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 391,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(21, 21, 21)))));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		// TODO add your handling code here:
+	private void jButton2ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+		joinDialog.setVisible(true);
 	}// GEN-LAST:event_jButton2ActionPerformed
 
-	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
+	private void jMenuItem1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_jMenuItem1ActionPerformed
 
-	private void jButton1MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton1MousePressed
+	private void jButton1MousePressed(MouseEvent evt) {// GEN-FIRST:event_jButton1MousePressed
 
 	}// GEN-LAST:event_jButton1MousePressed
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-
+	private void jButton1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		createDialog.setVisible(true);
 	}// GEN-LAST:event_jButton1ActionPerformed
-
-	private void jPopupMenu1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {// GEN-FIRST:event_jPopupMenu1PopupMenuWillBecomeVisible
-		// TODO add your handling code here:
-	}// GEN-LAST:event_jPopupMenu1PopupMenuWillBecomeVisible
-
-	private void showPopupMenu(ActionEvent e) {
-		// jPopupMenu1.show(this, e.getX(), e.getY());
-	}
 
 	/**
 	 * @param args
@@ -210,9 +201,9 @@ public class testUI extends javax.swing.JFrame {
 		 * html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
@@ -222,7 +213,7 @@ public class testUI extends javax.swing.JFrame {
 			java.util.logging.Logger.getLogger(testUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
 			java.util.logging.Logger.getLogger(testUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		} catch (UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(testUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
@@ -236,18 +227,17 @@ public class testUI extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton jButton1;
-	private javax.swing.JButton jButton2;
-	private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JList<String> jList1;
-	private javax.swing.JMenu jMenu1;
-	private javax.swing.JMenu jMenu2;
-	private javax.swing.JMenuBar jMenuBar1;
-	private javax.swing.JMenuItem jMenuItem1;
-	private javax.swing.JPopupMenu jPopupMenu1;
-	private javax.swing.JScrollPane jScrollPane1;
-	// End of variables declaration//GEN-END:variables
+	private JButton jButton1;
+	private JButton jButton2;
+	private JLabel jLabel1;
+	private JLabel jLabel2;
+	private JList<String> jList1;
+	private JMenu jMenu1;
+	private JMenu jMenu2;
+	private JMenuBar jMenuBar1;
+	private JMenuItem jMenuItem1;
+	private JScrollPane jScrollPane1;
+	private testJoinDialog joinDialog;
+	private testCreateDialog createDialog;
 }
 
