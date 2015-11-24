@@ -1,8 +1,5 @@
 package project;
 
-import java.lang.*;
-import java.util.*;
-
 
 public class Membership {
 
@@ -14,7 +11,7 @@ public class Membership {
     
 
    
-    public Membership(Society society, Student student, Student membersCount){
+    public Membership(Society society, Student student, Student membersCount, String joiningDate){
         payFee = false;
         this.joiningDate = joiningDate;
         this.society = society;

@@ -71,6 +71,8 @@ public class Society{
     private Student president;
     private boolean sanctioned;
     
+    // ----->>>>>    don't forget about SOCIETYSPEC class   <<<<<-----------
+    
 	Society(Student s, String n, String info, String m, String desc){
 		if (s.isStudent()){
             s.setMemberRole(new memberRole());
@@ -84,9 +86,10 @@ public class Society{
 			president = s;
 			contact_info = info;
 			major = m;
-			description = desc;
+			setDescription(desc);
 			sanctioned = false;
 			Promote();
+			
 		}else{
 			System.out.println(Disband() + "Reason: " + s.getName() + " is not recognized as a student at MUN.");
 		}
@@ -201,6 +204,8 @@ public class Society{
         Meeting m = new Meeting(date, time, location, purpose);
     }
     
+    // ---->>>>>>>>> MEETING and EVENT creation need work  <<<<------------
+    
     void haveEvent(String name, String date, String time, String location, String purpose){
         Event e = new Event(name, date, time, location, purpose);
     }
@@ -220,7 +225,7 @@ public class Society{
 		name = null;
 		contact_info = null;
 		major = null;
-		description = null;
+		setDescription(null);
 		members = null;
 		president = null;
 		return message;
@@ -240,6 +245,14 @@ public class Society{
 	
 	public void setFee(double fee) {
 		this.fee = fee;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

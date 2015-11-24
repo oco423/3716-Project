@@ -1,5 +1,4 @@
 package project;
-import java.lang.*;
 import java.util.*;
 public class Event extends Meeting{
     
