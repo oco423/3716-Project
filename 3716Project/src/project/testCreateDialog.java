@@ -18,6 +18,7 @@ public class testCreateDialog extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,7 @@ public class testCreateDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			textField = new JTextField();
-			textField.setBounds(92, 28, 189, 20);
+			textField.setBounds(145, 28, 189, 20);
 			contentPanel.add(textField);
 			textField.setColumns(10);
 		}
@@ -53,23 +54,34 @@ public class testCreateDialog extends JDialog {
 		lblNewLabel.setBounds(10, 24, 99, 28);
 		contentPanel.add(lblNewLabel);
 
-		JLabel lblSocietyThing = new JLabel("Society thing 2");
-		lblSocietyThing.setBounds(10, 73, 99, 28);
-		contentPanel.add(lblSocietyThing);
+		JLabel emaillbl = new JLabel("Email: ");
+		emaillbl.setBounds(10, 177, 99, 28);
+ 		contentPanel.add(emaillbl);
 
-		JLabel lblSocietyThing_1 = new JLabel("Society thing 3");
-		lblSocietyThing_1.setBounds(10, 126, 99, 28);
-		contentPanel.add(lblSocietyThing_1);
+		JLabel majorlbl = new JLabel("Major: ");
+		majorlbl.setBounds(10, 126, 99, 28);
+		contentPanel.add(majorlbl);
+		
+		JLabel descriptlbl = new JLabel("One line description: ");
+		descriptlbl.setBounds(10, 73, 125, 28);
+ 		contentPanel.add(descriptlbl);
+
+
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(92, 77, 189, 20);
+		textField_1.setBounds(145, 77, 189, 20);
 		contentPanel.add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(92, 130, 189, 20);
+		textField_2.setBounds(145, 130, 189, 20);
 		contentPanel.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(145, 181, 189, 20);
+		contentPanel.add(textField_3);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
