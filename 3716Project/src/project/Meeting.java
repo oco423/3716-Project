@@ -1,9 +1,6 @@
 package project;
-import java.lang.*;
-import java.util.*;
 public class Meeting{
     
-    Scanner in = new Scanner(System.in);
 	private String date;
     private String time;
     private String location;
