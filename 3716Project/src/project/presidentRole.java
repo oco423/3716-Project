@@ -1,6 +1,8 @@
 package project;
 
-public class presidentRole {
+import java.io.Serializable;
+
+public class presidentRole implements Serializable {
 	
 	void setSocietyFee(Society soc, double f){
 		soc.setFee(f);
