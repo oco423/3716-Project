@@ -1,6 +1,9 @@
 
 package project;
-public class boardMemberRole {
+
+import java.io.Serializable;
+
+public class boardMemberRole implements Serializable {
 	
 	boolean reviewApplication(Student s){
         //send each board member an email or other form of communication for them to view the application of a Student to join the society, and either accept or reject the application (or ignore it and do nothing)

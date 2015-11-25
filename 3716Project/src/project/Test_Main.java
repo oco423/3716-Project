@@ -1,9 +1,6 @@
 
 package project;
 
-import java.io.File;
-import java.util.Scanner;
-
 public class Test_Main{
 	public static void main(String[] args) throws MemberPermissionException{
 		
@@ -12,6 +9,8 @@ public class Test_Main{
 		while (s.hasNextLine()){
 			socList.addSociety(s.nextLine());
 		} */
+
+		SocietySys socList = new SocietySys();
 		String name;
 		int id;
 		name = "Lucas";
@@ -20,12 +19,14 @@ public class Test_Main{
 		int age = 20;
 		Student stu1 = new Student(name, major, age, id);
 		Student stu2 = new Student("Sam", "test_major", 21, 4356);
-		Society soc1 = new Society(stu1, "testing", "testing", "testing", "testing");
+		Society soc1 = new Society(stu1, "earth science club", "testing", "testing", "testing");
+		Student stu4 = new Student("Kelsi", "Psych", 19, 37373);
 		
-		Society soc2 = new Society(stu2, "testing", "testing", "testing", "testing");
+		Society soc2 = new Society(stu2, "cs club", "testing", "testing", "testing");
 		Student stu3 = new Student("Osede", "major_3", 21, 45356);
 		soc1.addMember(stu2);
 		soc1.addMember(stu3);
+		soc2.addMember(stu4);
 		
 		soc1.showMembers();
 		System.out.println("Is " + stu2.getName() + " a member of " + soc1.getName() + " ? " + soc1.isMember(stu2));
@@ -51,5 +52,14 @@ public class Test_Main{
 		
 		System.out.println(stu3.isBoardMember());
 		
+		socList.addSociety(soc2);
+		socList.addSociety(soc1);
+		socList.saveSocietyList();
+		
+		socList.loadSocietyList();
+		
+		System.out.println(socList.getSociety(soc2).isMember(stu3));
+
+
 	}
 }

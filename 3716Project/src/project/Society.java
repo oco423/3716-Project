@@ -57,10 +57,12 @@
  
  ******************************************************************************************/
  package project;
-import java.util.*;
-public class Society{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Society implements Serializable {
     
-    Scanner in = new Scanner(System.in);
+	// Scanner in = new Scanner(System.in);
 	private String name;
     private String contact_info;
     private String major;

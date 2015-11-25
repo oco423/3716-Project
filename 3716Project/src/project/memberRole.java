@@ -1,11 +1,12 @@
 
 package project;
-import java.util.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class memberRole {
+public class memberRole implements Serializable {
 	
-	Scanner in = new Scanner(System.in);
+	// Scanner in = new Scanner(System.in);
 	
 	private boolean eligible;
 	private int votes;
@@ -22,8 +23,9 @@ public class memberRole {
     	votes += 1;
     }
     void vote(ArrayList<Student> ballot){
-    	System.out.println("Enter the name of the member you are voting for:");
-    	String n = in.next();
+		// System.out.println("Enter the name of the member you are voting
+		// for:");
+		// String n = in.next();
     	//NOT FINISHED
     	//find the student in the Society list with the name n
     	//addVote() for that student
