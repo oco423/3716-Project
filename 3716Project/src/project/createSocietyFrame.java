@@ -4,15 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class testCreateDialog extends JDialog {
+public class createSocietyFrame extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
@@ -30,26 +31,30 @@ public class testCreateDialog extends JDialog {
 			socList.loadSocietyList();
 			stuList.loadStuList();
 			Student stu = new Student("lucas", "cs", 20, 40056);
-			testCreateDialog dialog = new testCreateDialog(socList, stuList, stu);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			createSocietyFrame frame = new createSocietyFrame(socList, stuList, stu);
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Create the dialog.
-	 */
-	public testCreateDialog(final SocietySys socList, StudentSys stuList, final Student s) {  //change to not pass a Student object, when we get log in
 
-		stuList.getStudent(s);                //change when log in finished
+	public createSocietyFrame(final SocietySys socList, StudentSys stuList, final Student s) {
+		setAlwaysOnTop(true);
+		setResizable(false); // change to not pass a Student object, when we get
+								// log in
+
+		stuList.getStudent(s); // change when log in finished
 		setTitle("Create a society");
-		setBounds(100, 100, 549, 431);
+		setSize(900, 600);
+		setBounds(100, 100, 1145, 709);
 		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setSize(900, 600);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		contentPanel.setSize(900, 600);
 		{
 			textField = new JTextField();
 			textField.setBounds(145, 28, 189, 20);
@@ -98,21 +103,27 @@ public class testCreateDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if(textField.getText().equals("")) {
-							JOptionPane.showMessageDialog(null, "Please enter the society name", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please enter the society name", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						} else if(textField_1.getText().equals("")) {
-							JOptionPane.showMessageDialog(null, "Please enter your email", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please enter your email", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						} else if(textField_2.getText().equals("")) {
-							JOptionPane.showMessageDialog(null, "Please enter a major", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please enter a major", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						} else if(textField_3.getText().equals("")) {
-							JOptionPane.showMessageDialog(null, "Please enter a 1 line description", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Please enter a 1 line description", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						} else if(socList.findSociety(textField.getText())) {
-							JOptionPane.showMessageDialog(null, "That Society already exists", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "That Society already exists", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						} else {
 							Society newSociety = new Society(s, textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText());
 							socList.loadSocietyList();
 							socList.addSociety(newSociety);
 							socList.saveSocietyList();
-							JOptionPane.showMessageDialog(null, "Society '" + textField.getText() + "' successfully created");
+							JOptionPane.showMessageDialog(null,
+									"Society '" + textField.getText() + "' successfully created");
 							setVisible(false);
 						}
 						
