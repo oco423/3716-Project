@@ -29,15 +29,15 @@ public class StudentSys {
 		return false;
 	}
 
-	public Student getStudent(Student s) {
-		for (Student stu : stuList) {
-			if (stu.getName().equalsIgnoreCase(s.getName()))
-				return stu;
+	public Student getStudent(String stu) {
+		for (Student s : stuList) {
+			if (stu.equalsIgnoreCase(s.getName()))
+				return s;
 		}
 		return null;
 	}
 
-	public ArrayList <Student> getstuList() {
+	public ArrayList<Student> getStuList() {
 		return stuList;
 	}
 	

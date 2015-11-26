@@ -4,10 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -43,7 +44,7 @@ public class testCreateDialog extends JDialog {
 	 */
 	public testCreateDialog(final SocietySys socList, StudentSys stuList, final Student s) {  //change to not pass a Student object, when we get log in
 
-		stuList.getStudent(s);                //change when log in finished
+		stuList.getStudent(s.getName()); // change when log in finished
 		setTitle("Create a society");
 		setBounds(100, 100, 549, 431);
 		getContentPane().setLayout(new BorderLayout());

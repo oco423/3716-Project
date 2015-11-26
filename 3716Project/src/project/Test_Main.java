@@ -44,7 +44,8 @@ public class Test_Main{
 		
 		stu3.getMemberRole(soc1).Promote(soc1);
 		
-		stu1.getBoardMemberRole(soc1).callMeeting(soc1, "November 21", "7:50 pm", "EN 2036", "Project Discussion");
+		// stu1.getBoardMemberRole(soc1).callMeeting(soc1, "November 21", "7:50
+		// pm", "EN 2036", "Project Discussion");
 		
 		stu1.getMemberRole(soc1).Promote(soc1);
 		System.out.println(stu3.isBoardMember());
