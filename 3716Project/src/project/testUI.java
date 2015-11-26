@@ -39,6 +39,10 @@ public class testUI extends JFrame {
 		initComponents();
 	}
 
+	public testUI(SocietySys societyManager, StudentSys studentManager) {
+		initComponents();
+	}
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +52,7 @@ public class testUI extends JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
-
+		setResizable(false);
 		new JPopupMenu();
 		jMenuItem1 = new JMenuItem();
 		new JCheckBoxMenuItem();
@@ -62,7 +66,24 @@ public class testUI extends JFrame {
 		jMenu1 = new JMenu();
 		jMenu2 = new JMenu();
 		joinDialog = new testJoinDialog();
-		createDialog = new testCreateDialog();
+		SocietySys socList = new SocietySys();
+		StudentSys stuList = new StudentSys();
+		Student stu = new Student("Lucas", "cs", 20, 40056);
+		
+		createDialog = new testCreateDialog(socList, stuList, stu);
+		new JPopupMenu();
+		jMenuItem1 = new JMenuItem();
+		new JCheckBoxMenuItem();
+		jLabel1 = new JLabel();
+		jScrollPane1 = new JScrollPane();
+		jList1 = new JList<>();
+		jButton1 = new JButton();
+		jButton2 = new JButton();
+		jLabel2 = new JLabel();
+		jMenuBar1 = new JMenuBar();
+		jMenu1 = new JMenu();
+		jMenu2 = new JMenu();
+		joinDialog = new testJoinDialog();
 
 
 
@@ -227,6 +248,8 @@ public class testUI extends JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
+
+	public static Student user;
 	private JButton jButton1;
 	private JButton jButton2;
 	private JLabel jLabel1;
