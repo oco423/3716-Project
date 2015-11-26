@@ -11,48 +11,48 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class SocietySys {
+public class StudentSys {
 	
-	private ArrayList <Society> societyList;
-	private File fileName = new File("socList.txt");
+	private ArrayList <Student> stuList;
+	private File fileName = new File("stuList.txt");
 	
-	public SocietySys() {
+	public StudentSys() {
 		
-		societyList = new ArrayList <Society>();
+		stuList = new ArrayList <Student>();
 	}
 	
-	public boolean findSociety(String name) {
-		for (Society s : societyList) {
+	public boolean findStudent(String name) {
+		for (Student s : stuList) {
 			if (s.getName().equals(name))
 				return true;
 		}
 		return false;
 	}
 
-	public Society getSociety(String soc) {  //inputs the name as a String
-		for (Society s : societyList) {
-			if (soc.equalsIgnoreCase(s.getName()))
+	public Student getStudent(String stu) {
+		for (Student s : stuList) {
+			if (stu.equalsIgnoreCase(s.getName()))
 				return s;
 		}
 		return null;
 	}
 
-	public ArrayList <Society> getSocietyList() {
-		return societyList;
+	public ArrayList<Student> getStuList() {
+		return stuList;
 	}
 	
-	public void addSociety(Society s) {
-		societyList.add(s);
+	public void addStudent(Student s) {
+		stuList.add(s);
 	}
 	
-	public void saveSocietyList() {
+	public void saveStuList() {
 		try {
 			if (!fileName.exists()) {
 				fileName.createNewFile();
 			}
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(societyList); // write MenuArray to
+			oos.writeObject(stuList); // write MenuArray to
 											// ObjectOutputStream
 			oos.close();
 		} catch (Exception ex) {
@@ -60,18 +60,18 @@ public class SocietySys {
 		}
 	}
 	
-	public void loadSocietyList() {
+	public void loadStuList() {
 		try(
 InputStream file = new FileInputStream(fileName);
 			      InputStream buffer = new BufferedInputStream(file);
 			      ObjectInput input = new ObjectInputStream (buffer);
 			    ){
 			      //deserialize the List
-			      ArrayList <Society> sList = (ArrayList<Society>)input.readObject();
+			      ArrayList <Student> sList = (ArrayList<Student>)input.readObject();
 			      //display its data
-			      for(Society s : sList ){
+			      for(Student s : sList ){
 
-				System.out.println("Recovered society: " + s.getName()); // for
+				System.out.println("Recovered Student: " + s.getName()); // for
 																			// testing
 																			// purposes
 			      }
@@ -81,7 +81,6 @@ InputStream file = new FileInputStream(fileName);
 			    }
 			    catch(IOException ex){
 			System.out.println("IO error");
-
 			    }
 	}
 

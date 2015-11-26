@@ -202,25 +202,24 @@ public class Society implements Serializable {
         }
     }*/
 	
-    void haveMeeting(String date, String time, String location, String purpose){
-        Meeting m = new Meeting(date, time, location, purpose);
-    }
+	/*
+	 * void haveMeeting(String date, String time, String location, String
+	 * purpose){ Meeting m = new Meeting(date, time, location, purpose); }
+	 */
     
     // ---->>>>>>>>> MEETING and EVENT creation need work  <<<<------------
-    
-    void haveEvent(String name, String date, String time, String location, String purpose){
-        Event e = new Event(name, date, time, location, purpose);
-    }
-    
-  /* void collectFees(){ //optional call
-        if (sanctioned){
-            System.out.println("Enter society fee, for 12 months membership:");
-            double fee = in.nextDouble();
-            //email all members to pay society fees
-        }else{
-            System.out.println("Society must first be sanctioned to collect fees.");
-        }
-    }*/
+
+	/*
+	 * void haveEvent(String name, String date, String time, String location,
+	 * String purpose){ Event e = new Event(name, date, time, location,
+	 * purpose); }*?
+	 * 
+	 * /* void collectFees(){ //optional call if (sanctioned){
+	 * System.out.println("Enter society fee, for 12 months membership:");
+	 * double fee = in.nextDouble(); //email all members to pay society fees
+	 * }else{ System.out.println(
+	 * "Society must first be sanctioned to collect fees."); } }
+	 */
     
 	String Disband(){
 		String message = "Society " + this.getName() + " disbanded.";
