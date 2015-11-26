@@ -73,6 +73,20 @@ public class testUI extends JFrame {
 		createDialog = new testCreateDialog(socList, stuList, stu);
 
 
+		new JPopupMenu();
+		jMenuItem1 = new JMenuItem();
+		new JCheckBoxMenuItem();
+		jLabel1 = new JLabel();
+		jScrollPane1 = new JScrollPane();
+		jList1 = new JList<>();
+		jButton1 = new JButton();
+		jButton2 = new JButton();
+		jLabel2 = new JLabel();
+		jMenuBar1 = new JMenuBar();
+		jMenu1 = new JMenu();
+		jMenu2 = new JMenu();
+		joinDialog = new testJoinDialog();
+		createDialog = new testCreateDialog(socList, stuList, stu);
 
 		jMenuItem1.setText("jMenuItem1");
 		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +249,9 @@ public class testUI extends JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
+
 	public static Student user;
+
 	private JButton jButton1;
 	private JButton jButton2;
 	private JLabel jLabel1;
