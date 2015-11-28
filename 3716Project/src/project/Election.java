@@ -7,9 +7,9 @@ public class Election{
     
 	private ArrayList<Student> ballot;
     
-	Election(Society s, String date) throws MemberPermissionException{
+	Election(Society s) throws MemberPermissionException{
 		createBallot(s);
-		conductVote(s, date);
+		conductVote(s);
 	}
 	ArrayList<Student> getBallot(){
 		return ballot;
@@ -21,15 +21,15 @@ public class Election{
 			}
 		}
 	}
-	void conductVote(Society soc, String date) throws MemberPermissionException{
+	void conductVote(Society soc) throws MemberPermissionException{
 		
 		//email every member to vote, displaying the ballot
 		
 		//this calls every Student in the list of members to vote
-		for (Student s:soc.getMembers()){
-			s.getMemberRole(soc).vote(getBallot());
-		}
-		
+		/*for (Student s:soc.getMembers()){
+		*	s.getMemberRole(soc).vote(getBallot());
+		*}
+		*/
 		
 		Student winner = new Student("Name", "Major", 20, 201599999); //winner must be initialized
 		int mostVotes = 0;
