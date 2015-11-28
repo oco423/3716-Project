@@ -19,6 +19,12 @@ public class memberRole implements Serializable {
     void Promote(Society s){
         s.Promote();
     }
+    boolean isEligible(){
+    	return eligible;
+    }
+    int getVotes(){
+    	return votes;
+    }
     void addVote(){
     	votes += 1;
     }

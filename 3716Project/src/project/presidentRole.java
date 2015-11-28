@@ -17,9 +17,9 @@ public class presidentRole implements Serializable {
 			soc.removeBoardMember(s);
 		}
 	}
-    /*void callElection(Society s, String date){
-        s.haveElection(date);
-    }*/
+    void callElection(Society s) throws MemberPermissionException{
+        s.haveElection();
+    }
     String Disband(Society s){
         return s.Disband() + "Disbanded by President.";
     }

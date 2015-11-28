@@ -196,14 +196,9 @@ public class Society implements Serializable {
         System.out.println("Society created and promoted!");
 	}
 	
-    /*void haveElection(String date){
-        Election e = new Election(this, date, president.getSid());
-        for (Student x:members){
-            if (x.getSid() == president.getSid()){
-                System.out.println("The new President of the society is " + x.getName() + ".");
-            }
-        }
-    }*/
+    void haveElection() throws MemberPermissionException{
+        Election e = new Election(this);
+    }
 	
 	/*
 	 * void haveMeeting(String date, String time, String location, String
@@ -251,6 +246,13 @@ public class Society implements Serializable {
 		this.fee = fee;
 	}
 
+	public void calculateFee() throws MemberPermissionException{
+		double fee = 0;
+		for (Student x:getBoard()){
+			fee += x.getBoardMemberRole(this).getProposedFee();
+		}
+		fee = fee/getBoard().size();
+	}
 	public String getDescription() {
 		return description;
 	}
