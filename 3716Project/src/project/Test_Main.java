@@ -26,17 +26,28 @@ public class Test_Main{
 		Society soc1 = new Society(stu1, "earth science club", "testing", "testing", "testing");
 		Student stu4 = new Student("Kelsi", "Psychology", 19, 37373);
 		
-		Society soc2 = new Society(stu2, "cs club", "testing", "testing", "testing");
+		//Society soc2 = new Society(stu2, "cs club", "testing", "testing", "testing");
 		Student stu3 = new Student("Osede", "Computer Science", 21, 45356);
 		soc1.addMember(stu2);
 		soc1.addMember(stu3);
-		soc2.addMember(stu4);
+		soc1.addMember(stu4);
 		
 		soc1.showMembers();
 		System.out.println("Is " + stu2.getName() + " a member of " + soc1.getName() + " ? " + soc1.isMember(stu2));
 		
+		stu1.getPresidentRole(soc1).Appoint(stu4, soc1);
+		stu1.getMemberRole(soc1).Declare();
+		stu2.getMemberRole(soc1).Declare();
+		stu3.getMemberRole(soc1).Declare();
+		stu4.getMemberRole(soc1).Declare();
+		System.out.println(stu1.getMemberRole(soc1).hasVoted());
+		stu1.getMemberRole(soc1).vote(soc1, stu3);
+		stu2.getMemberRole(soc1).vote(soc1, stu3);
+		stu3.getMemberRole(soc1).vote(soc1, stu3);
+		stu4.getMemberRole(soc1).vote(soc1, stu3);
+		stu1.getPresidentRole(soc1).callElection(soc1);
 		
-		System.out.println(soc1.getName());
+		/*System.out.println(soc1.getName());
 		//System.out.println(soc1.getPresident().getName());
 		
 		stu1.getPresidentRole(soc1).setSocietyFee(soc1, 54367);
@@ -90,7 +101,7 @@ public class Test_Main{
 		
 		
 		//System.out.println(socList.getSociety("cs club").isMember(stu3));
-
+		*/
 
 	}
 }

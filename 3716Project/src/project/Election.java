@@ -1,14 +1,13 @@
 package project;
-import java.lang.*;
 import java.util.*;
 public class Election{
-    
-    Scanner in = new Scanner(System.in);
     
 	private ArrayList<Student> ballot;
     
 	Election(Society s) throws MemberPermissionException{
+		ballot = new ArrayList<Student>();
 		createBallot(s);
+		showBallot();
 		conductVote(s);
 	}
 	ArrayList<Student> getBallot(){
@@ -21,6 +20,12 @@ public class Election{
 			}
 		}
 	}
+	void showBallot(){
+		System.out.println("Vote for one of the following members:");
+		for (Student x: ballot){
+			System.out.println(x.getName());
+		}
+	}
 	void conductVote(Society soc) throws MemberPermissionException{
 		
 		//email every member to vote, displaying the ballot
@@ -31,10 +36,10 @@ public class Election{
 		*}
 		*/
 		
-		Student winner = new Student("Name", "Major", 20, 201599999); //winner must be initialized
+		Student winner = new Student("[Error, No Votes Counted]", "Major", 20, 201599999); //winner must be initialized
 		int mostVotes = 0;
 		boolean tie = false;
-		for (Student s:soc.getMembers()){
+		for (Student s:getBallot()){
 			if (s.getMemberRole(soc).getVotes() > mostVotes){
 				winner = s;
 				mostVotes = s.getMemberRole(soc).getVotes();
@@ -55,6 +60,9 @@ public class Election{
         	soc.getPresident().setPresRole(null);
         	soc.getPresident().setBoardRole(null);
         	soc.setPresident(winner);
+        }
+        for (Student s:soc.getMembers()){
+        	s.getMemberRole(soc).resetVoted();
         }
     }
 }
