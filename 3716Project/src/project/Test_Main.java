@@ -47,10 +47,10 @@ public class Test_Main{
 		stu4.getMemberRole(soc1).vote(soc1, stu3);
 		stu1.getPresidentRole(soc1).callElection(soc1);
 		
-		/*System.out.println(soc1.getName());
+		System.out.println(soc1.getName());
 		//System.out.println(soc1.getPresident().getName());
 		
-		stu1.getPresidentRole(soc1).setSocietyFee(soc1, 54367);
+		/*stu1.getPresidentRole(soc1).setSocietyFee(soc1, 54367);
 		System.out.println(soc1.getFee());
 		
 		System.out.println(stu1.getMajor());
@@ -66,13 +66,13 @@ public class Test_Main{
 		System.out.println(stu3.isBoardMember());
 		
 		stu1.getPresidentRole(soc1).Appoint(stu3, soc1);
-		stu2.getPresidentRole(soc2).Appoint(stu3, soc2);
+		//stu2.getPresidentRole(soc2).Appoint(stu3, soc2);
 		
 		System.out.println(stu3.isBoardMember());
 
 		socList.loadSocietyList();
 		
-		socList.addSociety(soc2);
+		//socList.addSociety(soc2);*/
 		socList.addSociety(soc1);
 		socList.saveSocietyList();
 		
@@ -90,18 +90,18 @@ public class Test_Main{
 		}
 		
 		socList.saveSocietyList();
-		socList.loadSocietyList();
+		//socList.loadSocietyList();
 		
 		for (Society s : list) {
 			System.out.println(s.getName());
 		}
 		
-		//socList.loadSocietyList();
+		socList.loadSocietyList();
 		
 		
 		
 		//System.out.println(socList.getSociety("cs club").isMember(stu3));
-		*/
+		
 
 	}
 }

@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -26,6 +27,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
+import javax.swing.ListSelectionModel;
+import java.awt.Component;
 /**
  *
  * @author Lucas
@@ -56,6 +59,9 @@ public class testUI extends JFrame {
 		jLabel1 = new JLabel();
 		jScrollPane1 = new JScrollPane();
 		jList1 = new JList<>();
+
+		jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jList1.setValueIsAdjusting(true);
 		jButton1 = new JButton();
 		jButton2 = new JButton();
 		jLabel2 = new JLabel();
@@ -65,6 +71,8 @@ public class testUI extends JFrame {
 		joinFrame = new JoinFrame();
 		SocietySys socList = new SocietySys();
 		StudentSys stuList = new StudentSys();
+		socList.loadSocietyList();
+		stuList.loadStuList();
 		Student stu = new Student("Lucas", "cs", 20, 40056);		
 		createFrame = new CreateFrame(socList, stuList, stu);
 
@@ -81,18 +89,14 @@ public class testUI extends JFrame {
 		jLabel1.setForeground(new java.awt.Color(153, 0, 0));
 		jLabel1.setText("Welcome to the Memorial University Society System");
 
-		jList1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-		jList1.setModel(new AbstractListModel<String>() {
-			String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-
-			public int getSize() {
-				return strings.length;
-			}
-
-			public String getElementAt(int i) {
-				return strings[i];
-			}
-		});
+		jList1.setFont(new java.awt.Font("Tahoma", 0, 24));
+		
+		DefaultListModel model = new DefaultListModel();
+		for (Society s : socList.getSocietyList()) {
+			model.addElement(s.getName());
+		}
+		jList1.setModel(model);
+		
 		jScrollPane1.setViewportView(jList1);
 
 		jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

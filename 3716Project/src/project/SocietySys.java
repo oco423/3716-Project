@@ -23,7 +23,7 @@ public class SocietySys {
 	
 	public boolean findSociety(String name) {
 		for (Society s : societyList) {
-			if (s.getName().equals(name))
+			if (s.getName().equalsIgnoreCase(name))
 				return true;
 		}
 		return false;
@@ -46,14 +46,14 @@ public class SocietySys {
 	}
 	
 	public void saveSocietyList() {
+
 		try {
-			if (!fileName.exists()) {
-				fileName.createNewFile();
-			}
+
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(societyList); // write MenuArray to
-											// ObjectOutputStream
+			oos.writeObject(societyList);
+			oos.reset();		
+			oos.flush();
 			oos.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -67,9 +67,9 @@ InputStream file = new FileInputStream(fileName);
 			      ObjectInput input = new ObjectInputStream (buffer);
 			    ){
 			      //deserialize the List
-			      ArrayList <Society> sList = (ArrayList<Society>)input.readObject();
+			      this.societyList = (ArrayList<Society>)input.readObject();
 			      //display its data
-			      for(Society s : sList ){
+			      for(Society s : societyList ){
 
 				System.out.println("Recovered society: " + s.getName()); // for
 																			// testing

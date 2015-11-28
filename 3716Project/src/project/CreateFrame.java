@@ -98,6 +98,7 @@ public class CreateFrame extends JFrame {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						socList.loadSocietyList();
 						if(textField.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "Please enter the society name", "Error", JOptionPane.ERROR_MESSAGE);
 						} else if(textField_1.getText().equals("")) {
@@ -129,6 +130,10 @@ public class CreateFrame extends JFrame {
 				buttonPane.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						textField.setText("");
+						textField_1.setText("");
+						textField_2.setText("");
+						textField_3.setText("");
 						dispose();
 					}
 				});
