@@ -242,16 +242,16 @@ public class Society implements Serializable {
 		return fee;
 	}
 	
-	public void setFee(double fee) {
-		this.fee = fee;
+	public void setFee(double f) {
+		this.fee = f;
 	}
 
 	public void calculateFee() throws MemberPermissionException{
-		double fee = 0;
+		double newFee = 0;
 		for (Student x:getBoard()){
-			fee += x.getBoardMemberRole(this).getProposedFee();
+			newFee += x.getBoardMemberRole(this).getProposedFee();
 		}
-		fee = fee/getBoard().size();
+		newFee = newFee/getBoard().size();
 	}
 	public String getDescription() {
 		return description;
