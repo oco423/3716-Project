@@ -93,9 +93,22 @@ public class testUI extends JFrame {
 		
 		DefaultListModel model = new DefaultListModel();
 		for (Society s : socList.getSocietyList()) {
-			model.addElement(s.getName());
+			if (s.isMember(stu))
+				model.addElement(s.getName());
 		}
 		jList1.setModel(model);
+		
+		jList1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList list = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		        	//what happens when list item is clicked??
+		            System.out.println("Double clicked on: " + list.getSelectedValue());
+		        }
+		    }
+		});
+		
 		
 		jScrollPane1.setViewportView(jList1);
 

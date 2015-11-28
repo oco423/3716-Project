@@ -16,8 +16,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
+import java.awt.Dimension;
 
 public class JoinFrame extends JFrame {
+	
+
+	private JButton jButton1;
+	private JButton jButton2;
 
 	/**
 	 * Launch the application.
@@ -39,38 +44,14 @@ public class JoinFrame extends JFrame {
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Join a society");
 		setBounds(100, 100, 631, 381);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-				GroupLayout groupLayout = new GroupLayout(getContentPane());
-				groupLayout.setHorizontalGroup(
-					groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)
-				);
-				groupLayout.setVerticalGroup(
-					groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(316)
-							.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				);
-				getContentPane().setLayout(groupLayout);
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-			}
-		}
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(394, 120, 89, 23);
+		getContentPane().setLayout(null);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(394, 188, 89, 23);
+		getContentPane().add(btnNewButton_1);
+		getContentPane().add(btnNewButton);
+		
 
 	}
 }
