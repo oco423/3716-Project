@@ -176,7 +176,10 @@ public class Society implements Serializable {
 	}
 	
 	void setPresident(Student s){
+		//called by Election
+		s.setBoardRole(new boardMemberRole());
 		s.setPresRole(new presidentRole());
+		president = s;
 	}
 	
 	void Sanction(){
