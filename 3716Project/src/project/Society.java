@@ -97,6 +97,12 @@ public class Society implements Serializable {
 		}
 	}
 	
+	Society(){
+		name = null;
+		contact_info = null;
+		major = null;
+	}
+	
 	String getName(){
 		return name;
 	}
