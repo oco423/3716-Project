@@ -65,12 +65,12 @@ public class testUI extends JFrame {
 		jMenuBar1 = new JMenuBar();
 		jMenu1 = new JMenu();
 		jMenu2 = new JMenu();
-		joinDialog = new testJoinDialog();
+		joinDialog = new JoinFrame();
 		SocietySys socList = new SocietySys();
 		StudentSys stuList = new StudentSys();
 		Student stu = new Student("Lucas", "cs", 20, 40056);
 		
-		createDialog = new testCreateDialog(socList, stuList, stu);
+		createDialog = new CreateFrame(socList, stuList, stu);
 		new JPopupMenu();
 		jMenuItem1 = new JMenuItem();
 		new JCheckBoxMenuItem();
@@ -83,7 +83,7 @@ public class testUI extends JFrame {
 		jMenuBar1 = new JMenuBar();
 		jMenu1 = new JMenu();
 		jMenu2 = new JMenu();
-		joinDialog = new testJoinDialog();
+		joinDialog = new JoinFrame();
 
 
 
@@ -260,7 +260,7 @@ public class testUI extends JFrame {
 	private JMenuBar jMenuBar1;
 	private JMenuItem jMenuItem1;
 	private JScrollPane jScrollPane1;
-	private testJoinDialog joinDialog;
-	private testCreateDialog createDialog;
+	private JoinFrame joinDialog;
+	private CreateFrame createDialog;
 }
 

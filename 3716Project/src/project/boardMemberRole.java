@@ -2,11 +2,9 @@
 package project;
 
 import java.io.Serializable;
-import java.util.*;
 
 public class boardMemberRole implements Serializable {
 	
-	Scanner in = new Scanner(System.in);
 	
 	private double proposedFee;
 	
@@ -22,13 +20,13 @@ public class boardMemberRole implements Serializable {
 		proposedFee = fee;
 	}
 	
-	void proposeSocietyFee(Society soc, double fee){
+	/*void proposeSocietyFee(Society soc, double fee){
 		while (fee > 100.00){
 			System.out.println("Please enter a reasonable amount...");
 			fee = in.nextDouble();
 		}
 		setProposedFee(fee);
-	}
+	}*/
 
 	/*
 	 * void createEvent(Society s, String name, String date, String time, String

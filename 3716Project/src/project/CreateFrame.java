@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class testCreateDialog extends JDialog {
+public class CreateFrame extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
@@ -31,18 +31,18 @@ public class testCreateDialog extends JDialog {
 			socList.loadSocietyList();
 			stuList.loadStuList();
 			Student stu = new Student("lucas", "cs", 20, 40056);
-			testCreateDialog dialog = new testCreateDialog(socList, stuList, stu);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			CreateFrame frame = new CreateFrame(socList, stuList, stu);
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Create the dialog.
+	 * Create the frame.
 	 */
-	public testCreateDialog(final SocietySys socList, StudentSys stuList, final Student s) {  //change to not pass a Student object, when we get log in
+	public CreateFrame(final SocietySys socList, StudentSys stuList, final Student s) {  //change to not pass a Student object, when we get log in
 
 		stuList.getStudent(s.getName()); // change when log in finished
 		setTitle("Create a society");

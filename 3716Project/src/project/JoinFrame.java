@@ -7,11 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class testJoinDialog extends JDialog {
+public class JoinFrame extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -20,18 +20,18 @@ public class testJoinDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			testJoinDialog dialog = new testJoinDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			JoinFrame frame = new JoinFrame();
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Create the dialog.
+	 * Create the frame.
 	 */
-	public testJoinDialog() {
+	public JoinFrame() {
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Join a society");
 		setBounds(100, 100, 631, 381);
