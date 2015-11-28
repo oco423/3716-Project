@@ -35,9 +35,6 @@ public class testUI extends JFrame {
 	/**
 	 * Creates new form testUI
 	 */
-	public testUI() {
-		initComponents();
-	}
 
 	public testUI(SocietySys societyManager, StudentSys studentManager) {
 		initComponents();
@@ -65,27 +62,11 @@ public class testUI extends JFrame {
 		jMenuBar1 = new JMenuBar();
 		jMenu1 = new JMenu();
 		jMenu2 = new JMenu();
-		joinDialog = new JoinFrame();
+		joinFrame = new JoinFrame();
 		SocietySys socList = new SocietySys();
 		StudentSys stuList = new StudentSys();
-		Student stu = new Student("Lucas", "cs", 20, 40056);
-		
-		createDialog = new CreateFrame(socList, stuList, stu);
-		new JPopupMenu();
-		jMenuItem1 = new JMenuItem();
-		new JCheckBoxMenuItem();
-		jLabel1 = new JLabel();
-		jScrollPane1 = new JScrollPane();
-		jList1 = new JList<>();
-		jButton1 = new JButton();
-		jButton2 = new JButton();
-		jLabel2 = new JLabel();
-		jMenuBar1 = new JMenuBar();
-		jMenu1 = new JMenu();
-		jMenu2 = new JMenu();
-		joinDialog = new JoinFrame();
-
-
+		Student stu = new Student("Lucas", "cs", 20, 40056);		
+		createFrame = new CreateFrame(socList, stuList, stu);
 
 		jMenuItem1.setText("jMenuItem1");
 		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +173,7 @@ public class testUI extends JFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void jButton2ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		joinDialog.setVisible(true);
+		joinFrame.setVisible(true);
 	}// GEN-LAST:event_jButton2ActionPerformed
 
 	private void jMenuItem1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -204,7 +185,7 @@ public class testUI extends JFrame {
 	}// GEN-LAST:event_jButton1MousePressed
 
 	private void jButton1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		createDialog.setVisible(true);
+		createFrame.setVisible(true);
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	/**
@@ -242,7 +223,11 @@ public class testUI extends JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new testUI().setVisible(true);
+				SocietySys socList = new SocietySys();
+				StudentSys stuList = new StudentSys();
+				socList.loadSocietyList();
+				stuList.loadStuList();
+				new testUI(socList, stuList).setVisible(true);
 			}
 		});
 	}
@@ -260,7 +245,7 @@ public class testUI extends JFrame {
 	private JMenuBar jMenuBar1;
 	private JMenuItem jMenuItem1;
 	private JScrollPane jScrollPane1;
-	private JoinFrame joinDialog;
-	private CreateFrame createDialog;
+	private JoinFrame joinFrame;
+	private CreateFrame createFrame;
 }
 
