@@ -22,6 +22,8 @@ public class Student implements Serializable {
 		this.sid = sid;
 	}
 
+
+
 	public String getMajor() {
 		return major;
 	}

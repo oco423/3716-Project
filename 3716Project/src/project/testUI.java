@@ -5,30 +5,32 @@
  */
 package project;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
-import javax.swing.ListSelectionModel;
-import java.awt.Component;
 /**
  *
  * @author Lucas
@@ -40,6 +42,9 @@ public class testUI extends JFrame {
 	 */
 
 	public testUI(SocietySys societyManager, StudentSys studentManager) {
+		setTitle("MUN Society System");
+		
+		setResizable(false);
 		initComponents();
 	}
 
@@ -52,29 +57,327 @@ public class testUI extends JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
-		setResizable(false);
+		
+
+		socList.loadSocietyList();
+		stuList.loadStuList();
+		stu = stuList.getStudent("Lucas");
+		
+		
+		this.getContentPane().setPreferredSize(new Dimension(900, 600));
+		getContentPane().setLayout(new CardLayout(0, 0));
+
+		mainPanel = new JPanel();
+		getContentPane().add(mainPanel, "name_895231091421143");
+		jScrollPane1 = new JScrollPane();
+		jList1 = new JList<>();
+		jScrollPane1.setViewportView(jList1);
+
+		welcomeLabel = new JLabel("Welcome to the Memorial University Society System");
+		welcomeLabel.setForeground(new Color(128, 0, 0));
+		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
+
+		joinButton = new JButton("Join Society");
+		joinButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.setVisible(false);
+				joinSociety.setVisible(true);
+
+			}
+		});
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setMaximumSize(new Dimension(200, 200));
+
+
+		JList list = new JList();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(list);
+		DefaultListModel model = new DefaultListModel();
+		for (Society s : socList.getSocietyList()) {
+			if (s.isMember(stu))
+				model.addElement(s.getName());
+		}
+		list.setModel(model);
+		createButton = new JButton("Create Society");
+		createButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.setVisible(false);
+				createSociety.setVisible(true);
+			}
+		});
+		
+		lblMySocieties = new JLabel("My Societies");
+		lblMySocieties.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
+		gl_mainPanel.setHorizontalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(welcomeLabel, GroupLayout.PREFERRED_SIZE, 900, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGap(54)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblMySocieties, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE))
+					.addGap(407)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(createButton, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+						.addComponent(joinButton, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_mainPanel.setVerticalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGap(11)
+					.addComponent(welcomeLabel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+					.addGap(130)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addComponent(lblMySocieties)
+							.addGap(7)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addComponent(joinButton, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(createButton, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))))
+		);
+		mainPanel.setLayout(gl_mainPanel);
+
+		loginPanel = new JPanel();
+		getContentPane().add(loginPanel, "name_895238872963456");
+
+		lblPleaseLogIn = new JLabel("Please log in:");
+		lblPleaseLogIn.setFont(new Font("Tahoma", Font.PLAIN, 30));
+
+		lblName = new JLabel("Full name:");
+
+		nameField = new JTextField();
+		nameField.setColumns(10);
+
+		lblDontHaveAn = new JLabel("Don't have an account?");
+
+		btnClickHereTo = new JButton("Click here to make one");
+
+		btnLogIn = new JButton("Log in");
+		btnLogIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (Student s : stuList.getStuList()) {
+					if (nameField.getText().equalsIgnoreCase(s.getName())) {
+						stu = stuList.getStudent(s.getName());
+						loginPanel.setVisible(false);
+						mainPanel.setVisible(true);
+					} else {
+						System.out.println("Not registered");
+					}
+
+				}
+				if (nameField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter your name", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
+		});
+		GroupLayout gl_loginPanel = new GroupLayout(loginPanel);
+		gl_loginPanel.setHorizontalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_loginPanel.createSequentialGroup()
+						.addGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_loginPanel.createSequentialGroup().addGap(71).addComponent(lblPleaseLogIn,
+										GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_loginPanel.createSequentialGroup().addGap(91)
+								.addGroup(gl_loginPanel.createParallelGroup(Alignment.TRAILING).addComponent(btnLogIn)
+										.addGroup(gl_loginPanel.createSequentialGroup().addComponent(lblName).addGap(31)
+												.addComponent(nameField, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+				.addContainerGap(568, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING,
+						gl_loginPanel.createSequentialGroup().addContainerGap(676, Short.MAX_VALUE)
+								.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 127,
+										GroupLayout.PREFERRED_SIZE)
+								.addGap(164))
+				.addGroup(Alignment.TRAILING, gl_loginPanel.createSequentialGroup()
+						.addContainerGap(722, Short.MAX_VALUE).addComponent(btnClickHereTo).addGap(156)));
+		gl_loginPanel.setVerticalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_loginPanel
+				.createSequentialGroup().addGap(59)
+				.addComponent(lblPleaseLogIn, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE).addGap(106)
+				.addGroup(gl_loginPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(
+						nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(
+						gl_loginPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_loginPanel.createSequentialGroup().addGap(18)
+										.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 32,
+												GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClickHereTo))
+						.addGroup(gl_loginPanel.createSequentialGroup().addGap(36).addComponent(btnLogIn)))
+				.addContainerGap(284, Short.MAX_VALUE)));
+		loginPanel.setLayout(gl_loginPanel);
+
+
+		createSociety = new JPanel();
+
+		getContentPane().add(createSociety, "name_895235596351668");
+		
+		emailLbl = new JLabel("Emaill:");
+
+		majorLbl = new JLabel("Major:");
+
+		descriptLbl = new JLabel("One line description:");
+
+		socNameLbl = new JLabel("Society name:");
+
+		textField = new JTextField();
+		textField.setColumns(10);
+
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter the society name", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (textField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter your email", "Error", JOptionPane.ERROR_MESSAGE);
+				} else if (textField_2.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter a major", "Error", JOptionPane.ERROR_MESSAGE);
+				} else if (textField_3.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please enter a 1 line description", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (socList.findSociety(textField.getText())) {
+					JOptionPane.showMessageDialog(null, "That Society already exists", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					Society newSociety = new Society(stu, textField.getText(), textField_1.getText(),
+							textField_2.getText(), textField_3.getText());
+					socList.loadSocietyList();
+					socList.addSociety(newSociety);
+					socList.saveSocietyList();
+					JOptionPane.showMessageDialog(null, "Society '" + textField.getText() + "' successfully created");
+					setVisible(false);
+				}
+			}
+		});
+
+		JButton btnBack_1 = new JButton("Back");
+		btnBack_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createSociety.setVisible(false);
+				mainPanel.setVisible(true);
+			}
+		});
+		GroupLayout gl_createSociety = new GroupLayout(createSociety);
+		gl_createSociety.setHorizontalGroup(gl_createSociety.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_createSociety.createSequentialGroup().addGap(77)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.LEADING).addComponent(socNameLbl)
+								.addComponent(emailLbl).addComponent(majorLbl).addComponent(descriptLbl))
+						.addGap(45)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.LEADING)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(594, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING,
+						gl_createSociety.createSequentialGroup().addContainerGap(647, Short.MAX_VALUE)
+								.addComponent(btnBack_1).addGap(46).addComponent(btnOk).addGap(71)));
+		gl_createSociety.setVerticalGroup(gl_createSociety.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_createSociety.createSequentialGroup().addGap(76)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.BASELINE).addComponent(socNameLbl)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(36)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.BASELINE).addComponent(emailLbl)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(38)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.BASELINE).addComponent(majorLbl)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(41)
+						.addGroup(gl_createSociety.createParallelGroup(Alignment.BASELINE).addComponent(descriptLbl)
+								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(243).addGroup(gl_createSociety.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnOk).addComponent(btnBack_1))
+						.addContainerGap(63, Short.MAX_VALUE)));
+		createSociety.setLayout(gl_createSociety);
+
+				joinSociety = new JPanel();
+				getContentPane().add(joinSociety, "name_895237341878294");
+				
+				joinBtn = new JButton("Join");
+				joinBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				
+				leaveBtn = new JButton("Leave");
+				
+				scrollPane_1 = new JScrollPane();
+
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				joinSociety.setVisible(false);
+				mainPanel.setVisible(true);
+			}
+		});
+				GroupLayout gl_joinSociety = new GroupLayout(joinSociety);
+				gl_joinSociety.setHorizontalGroup(
+gl_joinSociety.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_joinSociety.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_joinSociety.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_joinSociety.createSequentialGroup().addGap(115)
+										.addGroup(gl_joinSociety.createParallelGroup(Alignment.TRAILING)
+												.addComponent(joinBtn).addComponent(leaveBtn))
+										.addContainerGap())
+								.addGroup(Alignment.TRAILING,
+										gl_joinSociety.createSequentialGroup()
+												.addPreferredGap(ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+												.addComponent(btnBack).addGap(172))))
+				);
+				gl_joinSociety.setVerticalGroup(
+gl_joinSociety.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_joinSociety.createSequentialGroup()
+							.addGap(180)
+							.addComponent(joinBtn)
+.addGap(8)
+						.addComponent(btnBack).addGap(86)
+							.addComponent(leaveBtn)
+							.addContainerGap(257, Short.MAX_VALUE))
+				.addGroup(gl_joinSociety.createSequentialGroup()
+							.addContainerGap(114, Short.MAX_VALUE)
+							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 475, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+				);
+				
+				list_1 = new JList();
+		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				DefaultListModel joinModel = new DefaultListModel();
+				for (Society s : socList.getSocietyList()) {
+			joinModel.addElement(s.getName());
+				}
+		scrollPane_1.setViewportView(list_1);
+
+		list_1.setModel(joinModel);
+				joinSociety.setLayout(gl_joinSociety);
+		this.pack();
 		new JPopupMenu();
 		jMenuItem1 = new JMenuItem();
 		new JCheckBoxMenuItem();
-		jLabel1 = new JLabel();
-		jScrollPane1 = new JScrollPane();
-		jList1 = new JList<>();
-
-		jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jList1.setValueIsAdjusting(true);
-		jButton1 = new JButton();
-		jButton2 = new JButton();
-		jLabel2 = new JLabel();
-		jMenuBar1 = new JMenuBar();
-		jMenu1 = new JMenu();
-		jMenu2 = new JMenu();
 		joinFrame = new JoinFrame();
-		SocietySys socList = new SocietySys();
-		StudentSys stuList = new StudentSys();
-		socList.loadSocietyList();
-		stuList.loadStuList();
-		Student stu = new Student("Lucas", "cs", 20, 40056);		
-		createFrame = new CreateFrame(socList, stuList, stu);
+
 
 		jMenuItem1.setText("jMenuItem1");
 		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,126 +387,14 @@ public class testUI extends JFrame {
 		});
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-		jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-		jLabel1.setForeground(new java.awt.Color(153, 0, 0));
-		jLabel1.setText("Welcome to the Memorial University Society System");
-
-		jList1.setFont(new java.awt.Font("Tahoma", 0, 24));
 		
-		DefaultListModel model = new DefaultListModel();
-		for (Society s : socList.getSocietyList()) {
-			if (s.isMember(stu))
-				model.addElement(s.getName());
-		}
-		jList1.setModel(model);
-		
-		jList1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        JList list = (JList)evt.getSource();
-		        if (evt.getClickCount() == 2) {
 
-		        	//what happens when list item is clicked??
-		            System.out.println("Double clicked on: " + list.getSelectedValue());
-		        }
-		    }
-		});
-		
-		
-		jScrollPane1.setViewportView(jList1);
 
-		jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-		jButton1.setText("Create a society");
-		jButton1.setToolTipText("");
-		jButton1.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent evt) {
-				jButton1MousePressed(evt);
-			}
-		});
-		jButton1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				jButton1ActionPerformed(evt);
-			}
-		});
-
-		jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-		jButton2.setText("Join a society");
-		jButton2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				jButton2ActionPerformed(evt);
-			}
-		});
-
-		jLabel2.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-		jLabel2.setText("My Societies");
-
-		jMenu1.setText("File");
-		jMenuBar1.add(jMenu1);
-
-		jMenu2.setText("Edit");
-		jMenuBar1.add(jMenu2);
-
-		setJMenuBar(jMenuBar1);
-
-		GroupLayout layout = new GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup().addGap(26, 26, 26)
-								.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(jScrollPane1)
-										.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addComponent(jButton2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 174,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(jButton1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 174,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(171, 171, 171))
-				.addGroup(layout
-						.createSequentialGroup().addContainerGap().addComponent(jLabel1,
- GroupLayout.PREFERRED_SIZE, 966, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(162, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addContainerGap()
-						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(79, 79, 79)
-										.addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 102,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(42, 42, 42)
-										.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 102,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(layout.createSequentialGroup()
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 51,
-												Short.MAX_VALUE)
-										.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 25,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 391,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(21, 21, 21)))));
-
-		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
-	private void jButton2ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		joinFrame.setVisible(true);
-	}// GEN-LAST:event_jButton2ActionPerformed
 
 	private void jMenuItem1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
 		// TODO add your handling code here:
 	}// GEN-LAST:event_jMenuItem1ActionPerformed
-
-	private void jButton1MousePressed(MouseEvent evt) {// GEN-FIRST:event_jButton1MousePressed
-
-	}// GEN-LAST:event_jButton1MousePressed
-
-	private void jButton1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		createFrame.setVisible(true);
-	}// GEN-LAST:event_jButton1ActionPerformed
 
 	/**
 	 * @param args
@@ -251,18 +442,41 @@ public class testUI extends JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 
-	public static Student user;
-	private JButton jButton1;
-	private JButton jButton2;
-	private JLabel jLabel1;
-	private JLabel jLabel2;
-	private JList<String> jList1;
-	private JMenu jMenu1;
-	private JMenu jMenu2;
-	private JMenuBar jMenuBar1;
+	private SocietySys socList = new SocietySys();
+	private StudentSys stuList = new StudentSys();
+
+	Student stu;
 	private JMenuItem jMenuItem1;
-	private JScrollPane jScrollPane1;
 	private JoinFrame joinFrame;
 	private CreateFrame createFrame;
+	private JPanel mainPanel;
+	private JPanel createSociety;
+	private JPanel joinSociety;
+	private JPanel loginPanel;
+	private JLabel welcomeLabel;
+	private JButton joinButton;
+	private JButton createButton;
+	private JList<String> jList1;
+	private JScrollPane jScrollPane1;
+	private JLabel lblMySocieties;
+	private JButton joinBtn;
+	private JButton leaveBtn;
+	private JScrollPane scrollPane_1;
+	private JList list_1;
+	private JButton btnBack;
+	private JLabel emailLbl;
+	private JLabel majorLbl;
+	private JLabel descriptLbl;
+	private JLabel socNameLbl;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JLabel lblPleaseLogIn;
+	private JLabel lblName;
+	private JTextField nameField;
+	private JLabel lblDontHaveAn;
+	private JButton btnClickHereTo;
+	private JButton btnLogIn;
 }
 

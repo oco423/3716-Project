@@ -15,7 +15,7 @@ public class UI {
 
 					societyManager.loadSocietyList();
 					studentManager.loadStuList();
-					
+
 					testUI frame = new testUI(societyManager, studentManager);
 					frame.setVisible(true);
 				} catch (Exception e) {

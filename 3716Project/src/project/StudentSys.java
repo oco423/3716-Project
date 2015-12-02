@@ -47,13 +47,12 @@ public class StudentSys {
 	
 	public void saveStuList() {
 		try {
-			if (!fileName.exists()) {
-				fileName.createNewFile();
-			}
+
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(stuList); // write MenuArray to
-											// ObjectOutputStream
+			oos.writeObject(stuList);
+			oos.reset();
+			oos.flush();
 			oos.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -67,9 +66,9 @@ InputStream file = new FileInputStream(fileName);
 			      ObjectInput input = new ObjectInputStream (buffer);
 			    ){
 			      //deserialize the List
-			      ArrayList <Student> sList = (ArrayList<Student>)input.readObject();
+			this.stuList = (ArrayList<Student>) input.readObject();
 			      //display its data
-			      for(Student s : sList ){
+			for (Student s : stuList) {
 
 				System.out.println("Recovered Student: " + s.getName()); // for
 																			// testing

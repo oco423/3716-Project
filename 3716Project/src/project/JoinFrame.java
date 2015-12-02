@@ -1,26 +1,16 @@
 package project;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
-import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
-import java.awt.Dimension;
 
 public class JoinFrame extends JFrame {
 	
@@ -44,20 +34,24 @@ public class JoinFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public JoinFrame() {
+		setResizable(false);
+		this.getContentPane().setPreferredSize(new Dimension(900, 600));
+		this.pack();
 		setFont(new Font("Dialog", Font.PLAIN, 12));
 		setTitle("Join a society");
 		setBounds(100, 100, 631, 381);
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(394, 120, 89, 23);
+		JButton joinBtn = new JButton("Join");
+		joinBtn.setBounds(586, 173, 89, 23);
 		getContentPane().setLayout(null);
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(394, 188, 89, 23);
-		getContentPane().add(btnNewButton_1);
-		getContentPane().add(btnNewButton);
+		JButton leaveBtn = new JButton("Leave");
+		leaveBtn.setBounds(586, 276, 89, 23);
+		getContentPane().add(leaveBtn);
+		getContentPane().add(joinBtn);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(36, 87, 174, 205);
+		scrollPane.setBounds(148, 232, 174, 205);
 		getContentPane().add(scrollPane);
 		final SocietySys socList = new SocietySys();
 		StudentSys stuList = new StudentSys();
