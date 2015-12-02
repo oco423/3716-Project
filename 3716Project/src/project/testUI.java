@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -45,8 +47,11 @@ public class testUI extends JFrame {
 		setTitle("MUN Society System");
 		
 		setResizable(false);
+		
 		initComponents();
 	}
+
+
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -61,7 +66,7 @@ public class testUI extends JFrame {
 
 		socList.loadSocietyList();
 		stuList.loadStuList();
-		stu = stuList.getStudent("Lucas");
+		stu = stuList.getStudent("Lucas");  //change when log in works, right now everthing is done from "Lucas" student login
 		
 		
 		this.getContentPane().setPreferredSize(new Dimension(900, 600));
@@ -92,12 +97,32 @@ public class testUI extends JFrame {
 		JList list = new JList();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
-		DefaultListModel model = new DefaultListModel();
+		final DefaultListModel model = new DefaultListModel();
+	
 		for (Society s : socList.getSocietyList()) {
 			if (s.isMember(stu))
 				model.addElement(s.getName());
 		}
 		list.setModel(model);
+		list.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList listt = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = listt.locationToIndex(evt.getPoint());
+		            mainPanel.setVisible(false);
+		            socPanel.setVisible(true);
+		            
+		            
+		      
+		        } else if (evt.getClickCount() == 3) {
+
+		            // Triple-click detected
+		            int index = listt.locationToIndex(evt.getPoint());
+		        }
+		    }
+		});
 		createButton = new JButton("Create Society");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,81 +166,83 @@ public class testUI extends JFrame {
 							.addComponent(createButton, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))))
 		);
 		mainPanel.setLayout(gl_mainPanel);
+		
+				loginPanel = new JPanel();
+				getContentPane().add(loginPanel, "name_895238872963456");
+				
+						lblPleaseLogIn = new JLabel("Please log in:");
+						lblPleaseLogIn.setFont(new Font("Tahoma", Font.PLAIN, 30));
+						
+								lblName = new JLabel("Full name:");
+								
+										nameField = new JTextField();
+										nameField.setColumns(10);
+										
+												lblDontHaveAn = new JLabel("Don't have an account?");
+												
+														btnClickHereTo = new JButton("Click here to make one");
+														
+																btnLogIn = new JButton("Log in");
+																btnLogIn.addActionListener(new ActionListener() {
+																	public void actionPerformed(ActionEvent e) {
+																		for (Student s : stuList.getStuList()) {
+																			if (nameField.getText().equalsIgnoreCase(s.getName())) {
+																				stu = stuList.getStudent(s.getName());
+																				loginPanel.setVisible(false);
+																				mainPanel.setVisible(true);
+																			} else {
+																				System.out.println("Not registered");
+																			}
 
-		loginPanel = new JPanel();
-		getContentPane().add(loginPanel, "name_895238872963456");
+																		}
+																		if (nameField.getText().equals("")) {
+																			JOptionPane.showMessageDialog(null, "Please enter your name", "Error", JOptionPane.ERROR_MESSAGE);
+																		}
+																		mainPanel.revalidate();
+																		mainPanel.repaint();
 
-		lblPleaseLogIn = new JLabel("Please log in:");
-		lblPleaseLogIn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-
-		lblName = new JLabel("Full name:");
-
-		nameField = new JTextField();
-		nameField.setColumns(10);
-
-		lblDontHaveAn = new JLabel("Don't have an account?");
-
-		btnClickHereTo = new JButton("Click here to make one");
-
-		btnLogIn = new JButton("Log in");
-		btnLogIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for (Student s : stuList.getStuList()) {
-					if (nameField.getText().equalsIgnoreCase(s.getName())) {
-						stu = stuList.getStudent(s.getName());
-						loginPanel.setVisible(false);
-						mainPanel.setVisible(true);
-					} else {
-						System.out.println("Not registered");
-					}
-
-				}
-				if (nameField.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Please enter your name", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-
-			}
-		});
-		GroupLayout gl_loginPanel = new GroupLayout(loginPanel);
-		gl_loginPanel.setHorizontalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_loginPanel.createSequentialGroup()
-						.addGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_loginPanel.createSequentialGroup().addGap(71).addComponent(lblPleaseLogIn,
-										GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_loginPanel.createSequentialGroup().addGap(91)
-								.addGroup(gl_loginPanel.createParallelGroup(Alignment.TRAILING).addComponent(btnLogIn)
-										.addGroup(gl_loginPanel.createSequentialGroup().addComponent(lblName).addGap(31)
-												.addComponent(nameField, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-				.addContainerGap(568, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING,
-						gl_loginPanel.createSequentialGroup().addContainerGap(676, Short.MAX_VALUE)
-								.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 127,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(164))
-				.addGroup(Alignment.TRAILING, gl_loginPanel.createSequentialGroup()
-						.addContainerGap(722, Short.MAX_VALUE).addComponent(btnClickHereTo).addGap(156)));
-		gl_loginPanel.setVerticalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_loginPanel
-				.createSequentialGroup().addGap(59)
-				.addComponent(lblPleaseLogIn, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE).addGap(106)
-				.addGroup(gl_loginPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(
-						nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(
-						gl_loginPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_loginPanel.createSequentialGroup().addGap(18)
-										.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 32,
-												GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClickHereTo))
-						.addGroup(gl_loginPanel.createSequentialGroup().addGap(36).addComponent(btnLogIn)))
-				.addContainerGap(284, Short.MAX_VALUE)));
-		loginPanel.setLayout(gl_loginPanel);
+																	}
+																});
+																GroupLayout gl_loginPanel = new GroupLayout(loginPanel);
+																gl_loginPanel.setHorizontalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
+																		.addGroup(gl_loginPanel.createSequentialGroup()
+																				.addGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING)
+																						.addGroup(gl_loginPanel.createSequentialGroup().addGap(71).addComponent(lblPleaseLogIn,
+																								GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE))
+																				.addGroup(gl_loginPanel.createSequentialGroup().addGap(91)
+																						.addGroup(gl_loginPanel.createParallelGroup(Alignment.TRAILING).addComponent(btnLogIn)
+																								.addGroup(gl_loginPanel.createSequentialGroup().addComponent(lblName).addGap(31)
+																										.addComponent(nameField, GroupLayout.PREFERRED_SIZE,
+																												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+																		.addContainerGap(568, Short.MAX_VALUE))
+																		.addGroup(Alignment.TRAILING,
+																				gl_loginPanel.createSequentialGroup().addContainerGap(676, Short.MAX_VALUE)
+																						.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 127,
+																								GroupLayout.PREFERRED_SIZE)
+																						.addGap(164))
+																		.addGroup(Alignment.TRAILING, gl_loginPanel.createSequentialGroup()
+																				.addContainerGap(722, Short.MAX_VALUE).addComponent(btnClickHereTo).addGap(156)));
+																gl_loginPanel.setVerticalGroup(gl_loginPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_loginPanel
+																		.createSequentialGroup().addGap(59)
+																		.addComponent(lblPleaseLogIn, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE).addGap(106)
+																		.addGroup(gl_loginPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblName).addComponent(
+																				nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+																		.addGroup(
+																				gl_loginPanel.createParallelGroup(Alignment.LEADING)
+																						.addGroup(gl_loginPanel.createSequentialGroup().addGap(18)
+																								.addComponent(lblDontHaveAn, GroupLayout.PREFERRED_SIZE, 32,
+																										GroupLayout.PREFERRED_SIZE)
+																						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnClickHereTo))
+																				.addGroup(gl_loginPanel.createSequentialGroup().addGap(36).addComponent(btnLogIn)))
+																		.addContainerGap(284, Short.MAX_VALUE)));
+																loginPanel.setLayout(gl_loginPanel);
 
 
 		createSociety = new JPanel();
 
 		getContentPane().add(createSociety, "name_895235596351668");
 		
-		emailLbl = new JLabel("Emaill:");
+		emailLbl = new JLabel("Email:");
 
 		majorLbl = new JLabel("Major:");
 
@@ -371,7 +398,100 @@ gl_joinSociety.createParallelGroup(Alignment.TRAILING)
 		scrollPane_1.setViewportView(list_1);
 
 		list_1.setModel(joinModel);
+		list_1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList list = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            System.out.println("Double click");
+		        } else if (evt.getClickCount() == 3) {
+
+		            // Triple-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		        }
+		    }
+		});
 				joinSociety.setLayout(gl_joinSociety);
+				
+				socPanel = new JPanel();
+				getContentPane().add(socPanel, "name_2162889633728");
+				
+				label = new JLabel("<society name>");
+
+				
+			
+				
+				
+				
+				lblNewLabel = new JLabel("<society major>");
+				
+				JScrollPane scrollPane_2 = new JScrollPane();
+				
+				JLabel lblMembers = new JLabel("Members");
+				
+				JButton btnLeaveThisSociety = new JButton("Leave this society");
+				
+				btnBack_2 = new JButton("Back");
+				btnBack_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						socPanel.setVisible(false);
+						mainPanel.setVisible(true);
+					}
+				});
+				GroupLayout gl_socPanel = new GroupLayout(socPanel);
+				gl_socPanel.setHorizontalGroup(
+					gl_socPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_socPanel.createSequentialGroup()
+							.addGap(101)
+							.addGroup(gl_socPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap(653, Short.MAX_VALUE))
+						.addGroup(gl_socPanel.createSequentialGroup()
+							.addContainerGap(427, Short.MAX_VALUE)
+							.addGroup(gl_socPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblMembers)
+								.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+							.addGap(319))
+						.addGroup(gl_socPanel.createSequentialGroup()
+							.addGap(66)
+							.addComponent(btnLeaveThisSociety)
+							.addPreferredGap(ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+							.addComponent(btnBack_2)
+							.addGap(170))
+				);
+				gl_socPanel.setVerticalGroup(
+					gl_socPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_socPanel.createSequentialGroup()
+							.addGap(69)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+							.addGap(86)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)
+							.addComponent(lblMembers)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+							.addGap(35)
+							.addComponent(btnLeaveThisSociety)
+							.addContainerGap(46, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_socPanel.createSequentialGroup()
+							.addContainerGap(515, Short.MAX_VALUE)
+							.addComponent(btnBack_2)
+							.addGap(62))
+				);
+				
+				JList list_2 = new JList();
+				scrollPane_2.setViewportView(list_2);
+				DefaultListModel memModel = new DefaultListModel();
+				for (Society s : socList.getSocietyList()) {
+					memModel.addElement(s.getName());
+				}
+		scrollPane_1.setViewportView(list_1);
+
+		list_1.setModel(joinModel);
+				socPanel.setLayout(gl_socPanel);
 		this.pack();
 		new JPopupMenu();
 		jMenuItem1 = new JMenuItem();
@@ -445,7 +565,7 @@ gl_joinSociety.createParallelGroup(Alignment.TRAILING)
 	private SocietySys socList = new SocietySys();
 	private StudentSys stuList = new StudentSys();
 
-	Student stu;
+	private Student stu;
 	private JMenuItem jMenuItem1;
 	private JoinFrame joinFrame;
 	private CreateFrame createFrame;
@@ -478,5 +598,9 @@ gl_joinSociety.createParallelGroup(Alignment.TRAILING)
 	private JLabel lblDontHaveAn;
 	private JButton btnClickHereTo;
 	private JButton btnLogIn;
+	private JPanel socPanel;
+	private JLabel label;
+	private JLabel lblNewLabel;
+	private JButton btnBack_2;
 }
 
