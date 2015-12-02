@@ -4,6 +4,10 @@ package project;
 import java.io.Serializable;
 
 public class Student implements Serializable {
+	/* includes all information about a student and the root of the execution
+	 * of all methods of memberRole, boardMemberRole, and presidentRole.
+	 * @author Lucas, Sam, Shehzaib, Osede
+	 */
 	
 	private String name;
 	private String major;	
@@ -21,8 +25,6 @@ public class Student implements Serializable {
 		this.age = age;	
 		this.sid = sid;
 	}
-
-
 
 	public String getMajor() {
 		return major;

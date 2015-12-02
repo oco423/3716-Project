@@ -2,7 +2,7 @@ package project;
 import java.util.*;
 public class Event extends Meeting{
     
-    Scanner in = new Scanner(System.in);
+    //Scanner in = new Scanner(System.in);
 	private String name;
     
 	Event(String n, String d, String t, String l, String p){

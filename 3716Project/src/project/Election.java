@@ -1,31 +1,17 @@
 package project;
 import java.util.*;
 public class Election{
+	/* includes all methods to create a ballot of eligible students and count votes.
+	 * election will change the president upon the conclusion of voting (if necessary).
+	 * election will not change the board members.
+	 * @author Sam
+	 */
     
-	private ArrayList<Student> ballot;
-    
-	Election(Society s) throws MemberPermissionException{
-		ballot = new ArrayList<Student>();
-		createBallot(s);
-		showBallot();
-		conductVote(s);
+	Election(Society soc) throws MemberPermissionException{
+		soc.showBallot();
+		conductVote(soc);
 	}
-	ArrayList<Student> getBallot(){
-		return ballot;
-	}
-	void createBallot(Society soc) throws MemberPermissionException{ //currently, all members declared eligible are placed on ballot
-		for (Student x:soc.getMembers()){
-			if (x.getMemberRole(soc).isEligible()){
-				ballot.add(x);
-			}
-		}
-	}
-	void showBallot(){
-		System.out.println("Vote for one of the following members:");
-		for (Student x: ballot){
-			System.out.println(x.getName());
-		}
-	}
+	
 	void conductVote(Society soc) throws MemberPermissionException{
 		
 		//email every member to vote, displaying the ballot
@@ -39,7 +25,7 @@ public class Election{
 		Student winner = new Student("[Error, No Votes Counted]", "Major", 20, 201599999); //winner must be initialized
 		int mostVotes = 0;
 		boolean tie = false;
-		for (Student s:getBallot()){
+		for (Student s:soc.getBallot()){
 			if (s.getMemberRole(soc).getVotes() > mostVotes){
 				winner = s;
 				mostVotes = s.getMemberRole(soc).getVotes();
@@ -61,8 +47,6 @@ public class Election{
         	soc.getPresident().setBoardRole(null);
         	soc.setPresident(winner);
         }
-        for (Student s:soc.getMembers()){
-        	s.getMemberRole(soc).resetVoted();
-        }
+        soc.resetVoted();
     }
 }

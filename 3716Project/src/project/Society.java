@@ -61,6 +61,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Society implements Serializable {
+	/* includes all information about a society and many methods to change and
+	 * update said information.
+	 * @author Sam, Osede, Lucas, Shehzaib
+	 */
     
 	// Scanner in = new Scanner(System.in);
 	private String name;
@@ -68,10 +72,14 @@ public class Society implements Serializable {
     private String major;
     private double fee = 0;
     private String description;
-    private ArrayList<Student> members; //map???
+    private ArrayList<Student> members;
     private ArrayList<Student> board;
+    private ArrayList<Boolean> votes;
+    private ArrayList<Student> ballot;
     private Student president;
     private boolean sanctioned;
+    private ArrayList<Meeting> meetings;
+    private ArrayList<Event> events;
     
     // ----->>>>>    don't forget about SOCIETYSPEC class   <<<<<-----------
     
@@ -84,6 +92,9 @@ public class Society implements Serializable {
             members.add(s);
             board = new ArrayList<Student>();
             board.add(s);
+            votes = new ArrayList<Boolean>();
+            votes.add(false);
+            ballot = new ArrayList<Student>();
 			name = n;
 			president = s;
 			contact_info = info;
@@ -115,6 +126,22 @@ public class Society implements Serializable {
 		return major;
 	}
 	
+	public double getFee() {
+		return fee;
+	}
+	
+	public void setFee(double f) {
+		this.fee = f;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	ArrayList<Student> getMembers(){
         return members;
 	}
@@ -134,8 +161,48 @@ public class Society implements Serializable {
 			System.out.println(x.getName());
 		}
 	}
+	
+	ArrayList<Boolean> getVotes(){
+		return votes;
+	}
+	
+	void showVotes(){
+		for (Student x: members){
+			System.out.print(x.getName() + " : ");
+			System.out.print(votes.get(members.indexOf(x)));
+		}
+	}
+	
+	void updateVote(Student s){
+		votes.set(getMembers().indexOf(s), true);
+	}
+	
+	void resetVoted(){
+		for (boolean b:votes){
+			b = false;
+		}
+	}
+	
+	ArrayList<Student> getBallot(){
+		return ballot;
+	}
+	
+	void showBallot(){
+		//System.out.println("Vote for one of the following members:");
+		for (Student x: ballot){
+			System.out.println(x.getName());
+		}
+	}
+	
 	Student getPresident(){
 		return president;
+	}
+	
+	void setPresident(Student s){
+		//called by Election
+		s.setBoardRole(new boardMemberRole());
+		s.setPresRole(new presidentRole());
+		president = s;
 	}
 	
 	boolean getSanctionStatus(){
@@ -154,9 +221,26 @@ public class Society implements Serializable {
 		major = m;
 	}
 	
+	ArrayList<Meeting> upcomingMeetings(){
+		return meetings;
+	}
+	
+	void addMeeting(Meeting m){
+		meetings.add(m);
+	}
+	
+	ArrayList<Event> upcomingEvents(){
+		return events;
+	}
+	
+	void addEvent(Event e){
+		events.add(e);
+	}
+	
 	void addMember(Student s){
 		s.setMemberRole(new memberRole());
-        members.add(s);     
+        members.add(s);
+        votes.add(false);
         System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted.");
     }
 	
@@ -181,13 +265,6 @@ public class Society implements Serializable {
         }
 	}
 	
-	void setPresident(Student s){
-		//called by Election
-		s.setBoardRole(new boardMemberRole());
-		s.setPresRole(new presidentRole());
-		president = s;
-	}
-	
 	void Sanction(){
 		if (members.size() >= 20){
 			sanctioned = true;
@@ -206,35 +283,24 @@ public class Society implements Serializable {
         Election e = new Election(this);
     }
 	
-	/*
-	 * void haveMeeting(String date, String time, String location, String
-	 * purpose){ Meeting m = new Meeting(date, time, location, purpose); }
-	 */
-    
-    // ---->>>>>>>>> MEETING and EVENT creation need work  <<<<------------
-
-	/*
-	 * void haveEvent(String name, String date, String time, String location,
-	 * String purpose){ Event e = new Event(name, date, time, location,
-	 * purpose); }*?
-	 * 
-	 * /* void collectFees(){ //optional call if (sanctioned){
+	
+	 void haveMeeting(String date, String time, String location, String purpose){
+		 Meeting m = new Meeting(date, time, location, purpose);
+		 addMeeting(m);
+	 }
+	
+	 void haveEvent(String name, String date, String time, String location, String purpose){
+		 Event e = new Event(name, date, time, location, purpose);
+		 addEvent(e);
+	 }
+	 
+	 /* 
+	 * void collectFees(){ //optional call if (sanctioned){
 	 * System.out.println("Enter society fee, for 12 months membership:");
 	 * double fee = in.nextDouble(); //email all members to pay society fees
 	 * }else{ System.out.println(
 	 * "Society must first be sanctioned to collect fees."); } }
 	 */
-    
-	String Disband(){
-		String message = "Society " + this.getName() + " disbanded.";
-		name = null;
-		contact_info = null;
-		major = null;
-		setDescription(null);
-		members = null;
-		president = null;
-		return message;
-	}
 	
 	public boolean isMember(Student s){
 		for(Student i : members) {
@@ -242,14 +308,6 @@ public class Society implements Serializable {
 				return true;
 		}
 		return false;
-	}
-	
-	public double getFee() {
-		return fee;
-	}
-	
-	public void setFee(double f) {
-		this.fee = f;
 	}
 
 	public void calculateFee() throws MemberPermissionException{
@@ -259,12 +317,16 @@ public class Society implements Serializable {
 		}
 		newFee = newFee/getBoard().size();
 	}
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	
+	String Disband(){
+		String message = "Society " + this.getName() + " disbanded.";
+		name = null;
+		contact_info = null;
+		major = null;
+		setDescription(null);
+		members = null;
+		president = null;
+		return message;
 	}
 	
 }

@@ -5,11 +5,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class memberRole implements Serializable {
+	/* includes all methods that society members have permission to execute in
+	 * a society, as well as all data associated with a member.
+	 * @author Sam
+	 */
 	
 	// Scanner in = new Scanner(System.in);
 	
 	private boolean eligible;
-	private boolean voted = false;
 	private int votes;
 	
 	void Declare(){
@@ -30,22 +33,16 @@ public class memberRole implements Serializable {
     void addVote(){
     	votes += 1;
     }
-    void resetVoted(){
-    	voted = false;
-    }
-    boolean hasVoted(){
-    	return voted;
-    }
     void vote(Society soc, Student s) throws MemberPermissionException{
     	if (s.getMemberRole(soc).isEligible() == false){
     		System.out.println("That student has not declared themselves eligible, thus you cannot vote for them.");
     	}
-    	if (voted == true){
+    	if (soc.getVotes().get(soc.getMembers().indexOf(s)) == true){
     		System.out.println("You cannot vote more than once per election.");
     		return;
     	}
     	s.getMemberRole(soc).addVote();
-    	voted = true;
+    	soc.updateVote(s);
 		// System.out.println("Enter the name of the member you are voting
 		// for:");
 		// String n = in.next();

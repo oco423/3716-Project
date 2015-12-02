@@ -4,7 +4,10 @@ package project;
 import java.io.Serializable;
 
 public class boardMemberRole implements Serializable {
-	
+	/* includes all methods a board member has permission to execute
+	 * in the running of a society.
+	 * @author Sam, Osede
+	 */
 	
 	private double proposedFee;
 	
@@ -28,13 +31,25 @@ public class boardMemberRole implements Serializable {
 		setProposedFee(fee);
 	}*/
 
-	/*
-	 * void createEvent(Society s, String name, String date, String time, String
-	 * location, String purpose){ s.haveEvent(name, date, time, location,
-	 * purpose); }*? /*void callMeeting(Society s, String date, String time,
-	 * String location, String purpose){ s.haveMeeting(date, time, location,
-	 * purpose); }
-	 */
+	void callMeeting(Society soc){
+		 //Entry of the following JTextFields to create a meeting and append it to the list of meetings in soc
+		 //String date
+		 //String time
+		 //String location
+		 //String purpose
+		 //soc.haveMeeting(date, time, location, purpose);
+	 }
+	
+	 void createEvent(Society soc){
+		 //Entry of the following JTextFields to create an event and append it to the list of events in soc
+		 //String name
+		 //String date
+		 //String time
+		 //String location
+		 //String purpose
+		 //soc.haveEvent(name, date, time, location, purpose);
+	 }
+	 
     void removeMember(Society soc, Student s){
         soc.removeMember(s);
     }
