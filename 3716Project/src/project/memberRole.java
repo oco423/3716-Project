@@ -14,11 +14,14 @@ public class memberRole implements Serializable {
 	
 	private boolean eligible;
 	
-	void Declare(){
+	void Declare(Society soc, Student you){
 		eligible = true;
+		soc.addToBallot(you);
+		
 	}
-    void Withdraw(){
+    void Withdraw(Society soc, Student you){
         eligible = false;
+        soc.removeFromBallot(you);
     }
     boolean isEligible(){
     	return eligible;
@@ -29,6 +32,7 @@ public class memberRole implements Serializable {
     void vote(Society soc, Student you, Student them) throws MemberPermissionException{
     	if (them.getMemberRole(soc).isEligible() == false){
     		System.out.println("That student has not declared themselves eligible, thus you cannot vote for them.");
+    		return;
     	}
     	if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
     		System.out.println("You cannot vote more than once per election.");

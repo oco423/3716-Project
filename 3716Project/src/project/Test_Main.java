@@ -41,14 +41,22 @@ public class Test_Main{
 		System.out.println("Is " + stu2.getName() + " a member of " + soc1.getName() + " ? " + soc1.isMember(stu2));
 		
 		stu1.getPresidentRole(soc1).Appoint(stu4, soc1);
-		stu1.getMemberRole(soc1).Declare();
+		stu1.getMemberRole(soc1).Declare(soc1, stu1);
 		//stu2.getMemberRole(soc1).Declare();
-		stu3.getMemberRole(soc1).Declare();
-		stu4.getMemberRole(soc1).Declare();
+		stu3.getMemberRole(soc1).Declare(soc1, stu3);
+		stu4.getMemberRole(soc1).Declare(soc1, stu4);
 		stu1.getMemberRole(soc1).vote(soc1, stu1, stu3);
-		stu2.getMemberRole(soc1).vote(soc1, stu2, stu3);
+		stu2.getMemberRole(soc1).vote(soc1, stu2, stu2);
 		stu3.getMemberRole(soc1).vote(soc1, stu3, stu3);
 		stu4.getMemberRole(soc1).vote(soc1, stu4, stu3);
+		soc1.showBallot();
+		stu4.getMemberRole(soc1).Withdraw(soc1, stu4);
+		stu2.getMemberRole(soc1).Declare(soc1, stu2);
+		stu2.getMemberRole(soc1).vote(soc1, stu2, stu2);
+		stu3.getMemberRole(soc1).vote(soc1, stu3, stu2);
+		soc1.showBallot();
+		soc1.showVoted();
+		soc1.showVotes();
 		stu1.getPresidentRole(soc1).callElection(soc1);
 		
 		System.out.println(soc1.getName());

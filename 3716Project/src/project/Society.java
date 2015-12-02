@@ -172,7 +172,7 @@ public class Society implements Serializable {
 	void showVoted(){
 		for (Student x: members){
 			System.out.print(x.getName() + " : ");
-			System.out.print(voted.get(members.indexOf(x)));
+			System.out.println(voted.get(members.indexOf(x)));
 		}
 	}
 	
@@ -180,13 +180,20 @@ public class Society implements Serializable {
 		return votes;
 	}
 	
-	int getVotesFor(Student s){
+	void showVotes(){
+		for (Student x: members){
+			System.out.print(x.getName() + " : ");
+			System.out.println(votes.get(members.indexOf(x)));
+		}
+	}
+	
+	int getVotesFor(Student s) throws MemberPermissionException{
     	return votes.get(getMembers().indexOf(s));
     }
 	
-	void updateVote(Student you, Student them){
+	void updateVote(Student you, Student them) throws MemberPermissionException{
 		voted.set(getMembers().indexOf(you), true);
-		votes.set(getMembers().indexOf(them), getMembers().indexOf(them)+1);
+		votes.set(getMembers().indexOf(them), votes.get(getMembers().indexOf(them))+1);
 	}
 	
 	void resetVotes(){
@@ -207,6 +214,14 @@ public class Society implements Serializable {
 		for (Student x: ballot){
 			System.out.println(x.getName());
 		}
+	}
+	
+	void addToBallot(Student s){
+		ballot.add(s);
+	}
+	
+	void removeFromBallot(Student s){
+		ballot.remove(s);
 	}
 	
 	Student getPresident(){
