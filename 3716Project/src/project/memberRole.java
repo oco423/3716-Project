@@ -13,7 +13,6 @@ public class memberRole implements Serializable {
 	// Scanner in = new Scanner(System.in);
 	
 	private boolean eligible;
-	private int votes;
 	
 	void Declare(){
 		eligible = true;
@@ -27,22 +26,15 @@ public class memberRole implements Serializable {
     void Promote(Society s){
         s.Promote();
     }
-    int getVotes(){
-    	return votes;
-    }
-    void addVote(){
-    	votes += 1;
-    }
-    void vote(Society soc, Student s) throws MemberPermissionException{
-    	if (s.getMemberRole(soc).isEligible() == false){
+    void vote(Society soc, Student you, Student them) throws MemberPermissionException{
+    	if (them.getMemberRole(soc).isEligible() == false){
     		System.out.println("That student has not declared themselves eligible, thus you cannot vote for them.");
     	}
-    	if (soc.getVotes().get(soc.getMembers().indexOf(s)) == true){
+    	if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
     		System.out.println("You cannot vote more than once per election.");
     		return;
     	}
-    	s.getMemberRole(soc).addVote();
-    	soc.updateVote(s);
+    	soc.updateVote(you, them);
 		// System.out.println("Enter the name of the member you are voting
 		// for:");
 		// String n = in.next();

@@ -74,7 +74,8 @@ public class Society implements Serializable {
     private String description;
     private ArrayList<Student> members;
     private ArrayList<Student> board;
-    private ArrayList<Boolean> votes;
+    private ArrayList<Boolean> voted;
+    private ArrayList<Integer> votes;
     private ArrayList<Student> ballot;
     private Student president;
     private boolean sanctioned;
@@ -92,8 +93,10 @@ public class Society implements Serializable {
             members.add(s);
             board = new ArrayList<Student>();
             board.add(s);
-            votes = new ArrayList<Boolean>();
-            votes.add(false);
+            voted = new ArrayList<Boolean>();
+            voted.add(false);
+            votes = new ArrayList<Integer>();
+            votes.add(0);
             ballot = new ArrayList<Student>();
 			name = n;
 			president = s;
@@ -162,24 +165,36 @@ public class Society implements Serializable {
 		}
 	}
 	
-	ArrayList<Boolean> getVotes(){
-		return votes;
+	ArrayList<Boolean> getVoted(){
+		return voted;
 	}
 	
-	void showVotes(){
+	void showVoted(){
 		for (Student x: members){
 			System.out.print(x.getName() + " : ");
-			System.out.print(votes.get(members.indexOf(x)));
+			System.out.print(voted.get(members.indexOf(x)));
 		}
 	}
 	
-	void updateVote(Student s){
-		votes.set(getMembers().indexOf(s), true);
+	ArrayList<Integer> getVotes(){
+		return votes;
 	}
 	
-	void resetVoted(){
-		for (boolean b:votes){
+	int getVotesFor(Student s){
+    	return votes.get(getMembers().indexOf(s));
+    }
+	
+	void updateVote(Student you, Student them){
+		voted.set(getMembers().indexOf(you), true);
+		votes.set(getMembers().indexOf(them), getMembers().indexOf(them)+1);
+	}
+	
+	void resetVotes(){
+		for (boolean b:voted){
 			b = false;
+		}
+		for (int x:votes){
+			x = 0;
 		}
 	}
 	
@@ -240,7 +255,8 @@ public class Society implements Serializable {
 	void addMember(Student s){
 		s.setMemberRole(new memberRole());
         members.add(s);
-        votes.add(false);
+        voted.add(false);
+        votes.add(0);
         System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted.");
     }
 	

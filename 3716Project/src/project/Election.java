@@ -26,11 +26,11 @@ public class Election{
 		int mostVotes = 0;
 		boolean tie = false;
 		for (Student s:soc.getBallot()){
-			if (s.getMemberRole(soc).getVotes() > mostVotes){
+			if (soc.getVotesFor(s) > mostVotes){
 				winner = s;
-				mostVotes = s.getMemberRole(soc).getVotes();
+				mostVotes = soc.getVotesFor(s);
 				tie = false;
-			}else if (s.getMemberRole(soc).getVotes() == mostVotes){
+			}else if (soc.getVotesFor(s) == mostVotes){
 				tie = true;
 			}
 		}
@@ -47,6 +47,6 @@ public class Election{
         	soc.getPresident().setBoardRole(null);
         	soc.setPresident(winner);
         }
-        soc.resetVoted();
+        soc.resetVotes();
     }
 }

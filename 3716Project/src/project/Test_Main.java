@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 
 public class Test_Main{
+	/* a console-focused testing class. Can be edited a number of ways to test the basic
+	 * methods of society and the various roles.
+	 * @author Sam
+	 */
+	
 	public static void main(String[] args) throws MemberPermissionException{
 		
 		/*Scanner s = new Scanner(new File(  PATH TO FILE  ));
@@ -37,14 +42,13 @@ public class Test_Main{
 		
 		stu1.getPresidentRole(soc1).Appoint(stu4, soc1);
 		stu1.getMemberRole(soc1).Declare();
-		stu2.getMemberRole(soc1).Declare();
+		//stu2.getMemberRole(soc1).Declare();
 		stu3.getMemberRole(soc1).Declare();
 		stu4.getMemberRole(soc1).Declare();
-		System.out.println(stu1.getMemberRole(soc1).hasVoted());
-		stu1.getMemberRole(soc1).vote(soc1, stu3);
-		stu2.getMemberRole(soc1).vote(soc1, stu3);
-		stu3.getMemberRole(soc1).vote(soc1, stu3);
-		stu4.getMemberRole(soc1).vote(soc1, stu3);
+		stu1.getMemberRole(soc1).vote(soc1, stu1, stu3);
+		stu2.getMemberRole(soc1).vote(soc1, stu2, stu3);
+		stu3.getMemberRole(soc1).vote(soc1, stu3, stu3);
+		stu4.getMemberRole(soc1).vote(soc1, stu4, stu3);
 		stu1.getPresidentRole(soc1).callElection(soc1);
 		
 		System.out.println(soc1.getName());
