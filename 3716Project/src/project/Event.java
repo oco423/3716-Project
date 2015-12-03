@@ -7,6 +7,13 @@ public class Event extends Meeting implements Serializable{
     //Scanner in = new Scanner(System.in);
 	private String name;
     
+	Event(){
+		super.setDate(null);
+		super.setTime(null);
+        super.setLocation(null);
+		super.setPurpose(null);
+		name = null;
+	}
 	Event(String n, String d, String t, String l, String p){
 		super.setDate(d);
 		super.setTime(t);

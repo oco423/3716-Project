@@ -262,12 +262,32 @@ public class Society implements Serializable {
 		meetings.add(m);
 	}
 	
+	void cancelMeeting(String date, String time, String location){
+		Meeting x = new Meeting();
+		for (Meeting m:upcomingMeetings()){
+			if (m.getDate().equalsIgnoreCase(date) && m.getTime().equalsIgnoreCase(time) && m.getLocation().equalsIgnoreCase(location)){
+				x = m;
+			}
+		}
+		meetings.remove(x);
+	}
+	
 	ArrayList<Event> upcomingEvents(){
 		return events;
 	}
 	
 	void addEvent(Event e){
 		events.add(e);
+	}
+	
+	void cancelEvent(String name){
+		Event x = new Event();
+		for (Event e:upcomingEvents()){
+			if (e.getName().equalsIgnoreCase(name)){
+				x = e;
+			}
+		}
+		events.remove(x);
 	}
 	
 	void addMember(Student s){
@@ -288,7 +308,7 @@ public class Society implements Serializable {
 	void removeMember(Student s){
 		//only board members can call this method
 		//or a member can by leaving
-        if (getMembers().contains(s)){
+        if (this.getMembers().contains(s)){
         	members.remove(s);
         }
 	}
