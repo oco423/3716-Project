@@ -13,11 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class joinPanel extends JPanel {
 
 	private JList list = new JList();
-	public joinPanel(final SocietySys socList, StudentSys stuList, final Student stu) {
+	private JTextField textField;
+	public joinPanel(final SocietySys socList, final StudentSys stuList, final Student stu) {
 
 
 
@@ -27,12 +30,21 @@ public class joinPanel extends JPanel {
 		JButton joinBtn = new JButton("Join");
 		joinBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				socList.loadSocietyList();
 				String str = (String) list.getSelectedValue();
+				String Stu = textField.getText();
+				Student s1 = new Student();
 				Society s = socList.getSociety(str);
-				if (!s.isMember(stu)) {
-					s.addMember(stu);
-					System.out.println(stu.getName() + " has joined " + s.getName());
-					socList.saveSocietyList();
+				for (Student student : stuList.getStuList()) {
+					if (Stu.equalsIgnoreCase(student.getName())) {
+						s1 = student;
+						
+					}			
+				}
+				if (!s.isMember(s1)) {
+					s.addMember(s1);
+					System.out.println(s1.getName() + " has joined " + s.getName());
+					stuList.saveStuList();
 					repaint();
 					revalidate();
 					updateUI();
@@ -41,21 +53,30 @@ public class joinPanel extends JPanel {
 					testUI.mainP.updateUI();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, stu.getName() + " is already a member of " + s.getName(), "Error",
+					JOptionPane.showMessageDialog(null, s1.getName() + " is already a member of " + s.getName(), "Error",
 							JOptionPane.ERROR_MESSAGE);
-				}			}
+				}			
+			}
 		});
 
 		JButton leaveBtn = new JButton("Leave");
 		leaveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				socList.loadSocietyList();
 				String str = (String) list.getSelectedValue();
+				String Stu = textField.getText();
+				Student s1 = new Student();
 				Society s = socList.getSociety(str);
-				if (s.isMember(stu)) {
-					s.removeMember(stu);
-					System.out.println(stu.getName() + " has left " + s.getName());
-					socList.saveSocietyList();
-					socList.loadSocietyList();
+				for (Student student : stuList.getStuList()) {
+					if (Stu.equalsIgnoreCase(student.getName())) {
+						s1 = student;
+						break;
+					}				
+				}
+				if (s.isMember(s1)) {
+					s.removeMember(s1);
+					System.out.println(s1.getName() + " has left " + s.getName());
+					stuList.saveStuList();
 					repaint();
 					revalidate();
 					updateUI();
@@ -64,9 +85,9 @@ public class joinPanel extends JPanel {
 					testUI.mainP.updateUI();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, stu.getName() + " is not a member of " + s.getName(), "Error",
+					JOptionPane.showMessageDialog(null, s1.getName() + " is not a member of " + s.getName(), "Error",
 							JOptionPane.ERROR_MESSAGE);
-				}
+				}	
 			}
 		});
 		
@@ -101,28 +122,50 @@ public class joinPanel extends JPanel {
 				testUI.mainP.updateUI();
 			}
 		});
+		
+		JLabel lblNewLabel = new JLabel("Your name:");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addGap(90)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(leaveBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(joinBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-				.addGap(109)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup().addGap(128).addComponent(joinBtn)
-										.addGap(42).addComponent(leaveBtn)
-										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addComponent(btnBack))
-						.addGroup(groupLayout.createSequentialGroup().addGap(118).addComponent(scrollPane,
-								GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap(96, Short.MAX_VALUE)));
+					.addGap(90)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(leaveBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(joinBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+					.addGap(109))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(138)
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(212, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(128)
+							.addComponent(joinBtn)
+							.addGap(42)
+							.addComponent(leaveBtn)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnBack))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(60)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(44)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(98, Short.MAX_VALUE))
+		);
 
 
 		scrollPane.setViewportView(list);

@@ -23,7 +23,7 @@ public class StudentSys {
 	
 	public boolean findStudent(String name) {
 		for (Student s : stuList) {
-			if (s.getName().equals(name))
+			if (s.getName().equalsIgnoreCase(name))
 				return true;
 		}
 		return false;

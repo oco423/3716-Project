@@ -26,6 +26,13 @@ public class Student implements Serializable {
 		this.sid = sid;
 	}
 
+	public Student() {
+		this.name = null;
+		this.major = null;
+		this.age = 0;	
+		this.sid = 0;
+	}
+
 	public String getMajor() {
 		return major;
 	}
