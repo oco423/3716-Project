@@ -32,6 +32,7 @@ public class testUI extends JFrame {
 	static joinPanel joinP;
 	static createPanel createP;
 	static loginPanel loginP;
+	static socPanel socP;
 	private JMenuItem jMenuItem1;
 	private JoinFrame joinFrame;
 	private CreateFrame createFrame;
@@ -113,7 +114,11 @@ public class testUI extends JFrame {
 		getContentPane().add(createP);
 		loginP = new loginPanel(socList, stuList);
 		getContentPane().add(loginP);
+		socP = new socPanel(socList, stuList, stu);
+		getContentPane().add(socP);
+		
 		loginP.setVisible(true);
+		socP.setVisible(false);
 		mainP.setVisible(false);
 		joinP.setVisible(false);
 		createP.setVisible(false);

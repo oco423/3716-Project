@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class StudentSys {
-	private Student stuLoggedIn = new Student("Lucas Critch", "CS", 20, 40056);
+	private static Student stuLoggedIn = new Student("Lucas Critch", "CS", 20, 40056);
 	private ArrayList <Student> stuList;
 	private File fileName = new File("stuList.txt");
 	

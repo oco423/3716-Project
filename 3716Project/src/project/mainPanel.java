@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -25,7 +27,7 @@ public class mainPanel extends JPanel {
 	SocietySys socList = new SocietySys();
 	StudentSys stuList = new StudentSys();
 
-	public mainPanel(SocietySys socList, StudentSys stuList, Student stu) {
+	public mainPanel(final SocietySys socList, StudentSys stuList, Student stu) {
 
 
 		socList.loadSocietyList();
@@ -72,6 +74,26 @@ public class mainPanel extends JPanel {
 				model.addElement(s.getName());
 		}
 		list.setModel(model);
+		
+		list.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList listt = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		        	Society soc = new Society();
+		            int index = listt.locationToIndex(evt.getPoint());
+		            setVisible(false);
+		            testUI.socP.setVisible(true);
+		            testUI.socP.label.setText((String) listt.getSelectedValue());
+		        } else if (evt.getClickCount() == 3) {
+
+		            // Triple-click detected
+		            int index = listt.locationToIndex(evt.getPoint());
+		        }
+		    }
+		});
+		
 		JLabel lblMySocieties = new JLabel("My Societies");
 		lblMySocieties.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblMySocieties.setBounds(54, 189, 156, 32);

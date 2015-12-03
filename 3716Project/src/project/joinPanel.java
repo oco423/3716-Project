@@ -25,6 +25,20 @@ public class joinPanel extends JPanel {
 		socList.loadSocietyList();
 		stuList.loadStuList();
 		JButton joinBtn = new JButton("Join");
+		joinBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String str = (String) list.getSelectedValue();
+				Society s = socList.getSociety(str);
+				if (!s.isMember(stu)) {
+					s.addMember(stu);
+					System.out.println(stu.getName() + " has joined " + s.getName());
+					socList.saveSocietyList();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, stu.getName() + " is already a member of " + s.getName(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}			}
+		});
 
 		JButton leaveBtn = new JButton("Leave");
 		leaveBtn.addActionListener(new ActionListener() {
@@ -34,6 +48,7 @@ public class joinPanel extends JPanel {
 				if (s.isMember(stu)) {
 					s.removeMember(stu);
 					System.out.println(stu.getName() + " has left " + s.getName());
+					socList.saveSocietyList();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, stu.getName() + " is not a member of " + s.getName(), "Error",
