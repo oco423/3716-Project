@@ -17,7 +17,6 @@ public class memberRole implements Serializable {
 	void Declare(Society soc, Student you){
 		eligible = true;
 		soc.addToBallot(you);
-		
 	}
     void Withdraw(Society soc, Student you){
         eligible = false;
@@ -39,12 +38,6 @@ public class memberRole implements Serializable {
     		return;
     	}
     	soc.updateVote(you, them);
-		// System.out.println("Enter the name of the member you are voting
-		// for:");
-		// String n = in.next();
-    	//NOT FINISHED
-    	//find the student in the Society list with the name n
-    	//addVote() for that student
     }
 	void Leave(Society soc){
 		//memberRole must become null

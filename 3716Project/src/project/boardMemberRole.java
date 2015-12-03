@@ -31,23 +31,12 @@ public class boardMemberRole implements Serializable {
 		setProposedFee(fee);
 	}*/
 
-	void callMeeting(Society soc){
-		 //Entry of the following JTextFields to create a meeting and append it to the list of meetings in soc
-		 //String date
-		 //String time
-		 //String location
-		 //String purpose
-		 //soc.haveMeeting(date, time, location, purpose);
+	void callMeeting(Society soc, String date, String time, String location, String purpose){
+		 soc.haveMeeting(date, time, location, purpose);
 	 }
 	
-	 void createEvent(Society soc){
-		 //Entry of the following JTextFields to create an event and append it to the list of events in soc
-		 //String name
-		 //String date
-		 //String time
-		 //String location
-		 //String purpose
-		 //soc.haveEvent(name, date, time, location, purpose);
+	 void createEvent(Society soc, String name, String date, String time, String location, String purpose){
+		 soc.haveEvent(name, date, time, location, purpose);
 	 }
 	 
     void removeMember(Society soc, Student s){

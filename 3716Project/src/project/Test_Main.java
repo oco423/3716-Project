@@ -59,6 +59,18 @@ public class Test_Main{
 		soc1.showVotes();
 		stu1.getPresidentRole(soc1).callElection(soc1);
 		
+		stu3.getBoardMemberRole(soc1).callMeeting(soc1, "December 4th", "9:00AM", "EN-2036", "Project presentation.");
+		stu4.getBoardMemberRole(soc1).createEvent(soc1, "Snowstorm!", "December 4th", "7:00AM", "at home", "go back to bed!");
+		for (Meeting x : soc1.upcomingMeetings()){
+			System.out.println(x.getDate() + ", at " + x.getTime() + ", in " + x.getLocation() + ", for " + x.getPurpose());
+		}
+		for (Event x : soc1.upcomingEvents()){
+			System.out.println(x.getDate() + ", we are having " + x.getName() + ", at " + x.getTime() + ", in " + x.getLocation() + ", for " + x.getPurpose());
+		}
+		
+		
+		
+		
 		System.out.println(soc1.getName());
 		//System.out.println(soc1.getPresident().getName());
 		

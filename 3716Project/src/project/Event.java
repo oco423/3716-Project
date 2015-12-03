@@ -1,6 +1,8 @@
 package project;
 import java.util.*;
-public class Event extends Meeting{
+import java.io.Serializable;
+
+public class Event extends Meeting implements Serializable{
     
     //Scanner in = new Scanner(System.in);
 	private String name;

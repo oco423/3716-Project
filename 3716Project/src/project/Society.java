@@ -89,6 +89,8 @@ public class Society implements Serializable {
             s.setMemberRole(new memberRole());
             s.setBoardRole(new boardMemberRole());
             s.setPresRole(new presidentRole());
+            meetings = new ArrayList<Meeting>();
+            events = new ArrayList<Event>();
             members = new ArrayList<Student>();
             members.add(s);
             board = new ArrayList<Student>();
@@ -232,6 +234,7 @@ public class Society implements Serializable {
 		//called by Election
 		s.setBoardRole(new boardMemberRole());
 		s.setPresRole(new presidentRole());
+		board.add(s);
 		president = s;
 	}
 	
@@ -284,6 +287,7 @@ public class Society implements Serializable {
 	
 	void removeMember(Student s){
 		//only board members can call this method
+		//or a member can by leaving
         if (this.getMembers().contains(s)){
         	members.remove(s);
         }

@@ -1,5 +1,7 @@
 package project;
-public class Meeting{
+import java.io.Serializable;
+
+public class Meeting implements Serializable{
     
 	private String date;
     private String time;

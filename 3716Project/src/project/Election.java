@@ -1,6 +1,8 @@
 package project;
 import java.util.*;
-public class Election{
+import java.io.Serializable;
+
+public class Election implements Serializable{
 	/* includes all methods to create a ballot of eligible students and count votes.
 	 * election will change the president upon the conclusion of voting (if necessary).
 	 * election will not change the board members.
