@@ -25,8 +25,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class testUI extends JFrame {
 
-	private SocietySys socList = new SocietySys();
-	private StudentSys stuList = new StudentSys();
+	SocietySys socList = new SocietySys();
+	StudentSys stuList = new StudentSys();
 	Student stu;
 	static mainPanel mainP;
 	static joinPanel joinP;
@@ -76,7 +76,11 @@ public class testUI extends JFrame {
 
 	public testUI(SocietySys societyManager, StudentSys studentManager) {
 		setTitle("MUN Society System");
-		
+		socList = societyManager;
+		stuList = studentManager;
+		socList.loadSocietyList();
+		stuList.loadStuList();
+		stu = stuList.getStuLoggedIn();
 		setResizable(false);
 		
 		initComponents();
@@ -94,10 +98,7 @@ public class testUI extends JFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 		
-
-		socList.loadSocietyList();
-		stuList.loadStuList();
-		stu = stuList.getStuLoggedIn(); // change when log in works, right now
+		 // change when log in works, right now
 									// everthing is done from "Lucas" student
 									// login
 		

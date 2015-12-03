@@ -75,6 +75,15 @@ public class createPanel extends JPanel {
 					//socList.loadSocietyList();
 					socList.addSociety(newSociety);
 					socList.saveSocietyList();
+					repaint();
+					revalidate();
+					updateUI();
+					testUI.mainP.repaint();
+					testUI.mainP.revalidate();
+					testUI.mainP.updateUI();
+					testUI.joinP.repaint();
+					testUI.joinP.revalidate();
+					testUI.joinP.updateUI();
 					JOptionPane.showMessageDialog(null, "Society '" + textField.getText() + "' successfully created");
 					setVisible(false);
 				}

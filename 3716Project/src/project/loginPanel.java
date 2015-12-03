@@ -22,7 +22,8 @@ public class loginPanel extends JPanel {
 
 		textField = new JTextField();
 		textField.setColumns(10);
-
+		socList.loadSocietyList();
+		stuList.loadStuList();
 		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -33,6 +34,9 @@ public class loginPanel extends JPanel {
 						testUI.mainP.setVisible(true);
 						testUI.mainP.list.revalidate();
 						testUI.mainP.list.repaint();
+						testUI.mainP.revalidate();
+						testUI.mainP.repaint();
+						testUI.mainP.updateUI();
 
 					}
 				}

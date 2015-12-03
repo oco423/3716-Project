@@ -33,6 +33,12 @@ public class joinPanel extends JPanel {
 					s.addMember(stu);
 					System.out.println(stu.getName() + " has joined " + s.getName());
 					socList.saveSocietyList();
+					repaint();
+					revalidate();
+					updateUI();
+					testUI.mainP.repaint();
+					testUI.mainP.revalidate();
+					testUI.mainP.updateUI();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, stu.getName() + " is already a member of " + s.getName(), "Error",
@@ -49,6 +55,13 @@ public class joinPanel extends JPanel {
 					s.removeMember(stu);
 					System.out.println(stu.getName() + " has left " + s.getName());
 					socList.saveSocietyList();
+					socList.loadSocietyList();
+					repaint();
+					revalidate();
+					updateUI();
+					testUI.mainP.repaint();
+					testUI.mainP.revalidate();
+					testUI.mainP.updateUI();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, stu.getName() + " is not a member of " + s.getName(), "Error",
@@ -79,6 +92,13 @@ public class joinPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				testUI.mainP.setVisible(true);
+				socList.saveSocietyList();
+				repaint();
+				revalidate();
+				updateUI();
+				testUI.mainP.repaint();
+				testUI.mainP.revalidate();
+				testUI.mainP.updateUI();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);

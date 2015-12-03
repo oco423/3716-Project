@@ -12,8 +12,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class StudentSys {
-	private static Student stuLoggedIn = new Student("Lucas Critch", "CS", 20, 40056);
-	private ArrayList <Student> stuList;
+	Student stuLoggedIn = new Student("Lucas Critch", "CS", 20, 40056);
+	ArrayList <Student> stuList;
 	private File fileName = new File("stuList.txt");
 	
 	public StudentSys() {

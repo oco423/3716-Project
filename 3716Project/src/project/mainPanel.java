@@ -24,8 +24,7 @@ public class mainPanel extends JPanel {
 	DefaultListModel model = new DefaultListModel();
 	JScrollPane scrollPane = new JScrollPane();
 	JList list = new JList();
-	SocietySys socList = new SocietySys();
-	StudentSys stuList = new StudentSys();
+
 
 	public mainPanel(final SocietySys socList, StudentSys stuList, Student stu) {
 
