@@ -1,19 +1,19 @@
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+package project;
 
-public class electionPanel {
+import java.awt.Label;
 
-	protected Shell shell;
-	private Text text;
-	private Text text_1;
-	private Text text_2;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class electionPanel extends JPanel {
+	public electionPanel() {
+	}
+
+	private JTextField text;
+	private JTextField text_1;
+	private JTextField text_2;
 
 	/**
 	 * Launch the application.
@@ -22,74 +22,55 @@ public class electionPanel {
 	public static void main(String[] args) {
 		try {
 			electionPanel window = new electionPanel();
-			window.open();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
-	public void open() {
-		Display display = Display.getDefault();
-		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
+
 
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(702, 501);
-		shell.setText("SWT Application");
+
 		
-		Label lblMunSocieties = new Label(shell, SWT.NONE);
+		Label lblMunSocieties = new Label();
 		lblMunSocieties.setBounds(286, 34, 120, 35);
 		lblMunSocieties.setText("MUN Societies");
 		
-		Label lblElectionPanel = new Label(shell, SWT.NONE);
+		Label lblElectionPanel = new Label();
 		lblElectionPanel.setBounds(286, 63, 100, 35);
 		lblElectionPanel.setText("Election Panel");
 		
-		text = new Text(shell, SWT.BORDER);
+		text = new JTextField();
 		text.setBounds(239, 273, 220, 23);
 		
-		Label lblWhoAreYou = new Label(shell, SWT.NONE);
+		JLabel lblWhoAreYou = new JLabel();
 		lblWhoAreYou.setBounds(30, 276, 166, 23);
 		lblWhoAreYou.setText("Who are you voting for?");
 		
-		Button btnVote = new Button(shell, SWT.NONE);
+		JButton btnVote = new JButton();
 		btnVote.setBounds(93, 373, 90, 30);
 		btnVote.setText("Vote");
 		
-		Label lblName = new Label(shell, SWT.NONE);
+		JLabel lblName = new JLabel();
 		lblName.setBounds(30, 134, 70, 20);
 		lblName.setText("Name: ");
 		
-		text_1 = new Text(shell, SWT.BORDER);
+		text_1 = new JTextField();
 		text_1.setBounds(239, 131, 220, 26);
 		
-		text_2 = new Text(shell, SWT.BORDER);
+		text_2 = new JTextField();
 		text_2.setBounds(239, 200, 220, 26);
 		
-		Label lblStudentId = new Label(shell, SWT.NONE);
+		JLabel lblStudentId = new JLabel();
 		lblStudentId.setBounds(30, 206, 70, 20);
 		lblStudentId.setText("Student ID");
 		
-		Button btnBack = new Button(shell, SWT.NONE);
-		btnBack.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-			}
-		});
+		JButton btnBack = new JButton();
+		
 		btnBack.setBounds(418, 373, 90, 30);
 		btnBack.setText("Back");
 
