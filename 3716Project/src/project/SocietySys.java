@@ -85,5 +85,8 @@ InputStream file = new FileInputStream(fileName);
 			    }
 	}
 
+	public void deleteSociety(Society s) {
+		societyList.remove(s);
+	}
 
 }

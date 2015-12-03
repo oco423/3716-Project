@@ -118,9 +118,9 @@ public class testUI extends JFrame {
 		socP = new socPanel(socList, stuList, stu);
 		getContentPane().add(socP);
 		
-		loginP.setVisible(true);
+		//loginP.setVisible(true);
 		socP.setVisible(false);
-		mainP.setVisible(false);
+		mainP.setVisible(true);
 		joinP.setVisible(false);
 		createP.setVisible(false);
 		pack();

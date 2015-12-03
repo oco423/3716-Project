@@ -288,7 +288,7 @@ public class Society implements Serializable {
 	void removeMember(Student s){
 		//only board members can call this method
 		//or a member can by leaving
-        if (this.getMembers().contains(s)){
+        if (getMembers().contains(s)){
         	members.remove(s);
         }
 	}

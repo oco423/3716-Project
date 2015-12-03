@@ -30,7 +30,6 @@ public class joinPanel extends JPanel {
 		JButton joinBtn = new JButton("Join");
 		joinBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				socList.loadSocietyList();
 				String str = (String) list.getSelectedValue();
 				String Stu = textField.getText();
 				Student s1 = new Student();
@@ -45,6 +44,7 @@ public class joinPanel extends JPanel {
 					s.addMember(s1);
 					System.out.println(s1.getName() + " has joined " + s.getName());
 					stuList.saveStuList();
+					socList.saveSocietyList();
 					repaint();
 					revalidate();
 					updateUI();
@@ -62,21 +62,20 @@ public class joinPanel extends JPanel {
 		JButton leaveBtn = new JButton("Leave");
 		leaveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				socList.loadSocietyList();
 				String str = (String) list.getSelectedValue();
 				String Stu = textField.getText();
 				Student s1 = new Student();
 				Society s = socList.getSociety(str);
 				for (Student student : stuList.getStuList()) {
 					if (Stu.equalsIgnoreCase(student.getName())) {
-						s1 = student;
-						break;
+						s1 = student;	
 					}				
 				}
 				if (s.isMember(s1)) {
 					s.removeMember(s1);
 					System.out.println(s1.getName() + " has left " + s.getName());
 					stuList.saveStuList();
+					socList.saveSocietyList();
 					repaint();
 					revalidate();
 					updateUI();
@@ -127,19 +126,34 @@ public class joinPanel extends JPanel {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				String str = (String) list.getSelectedValue();
+				String Stu = textField.getText();
+				Society s = socList.getSociety(str);
+				socList.deleteSociety(s);
+				System.out.println(s.getName() + " deleted");
+				
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(90)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(leaveBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(joinBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
 					.addGap(109))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(138)
 					.addComponent(lblNewLabel)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -155,6 +169,8 @@ public class joinPanel extends JPanel {
 							.addComponent(joinBtn)
 							.addGap(42)
 							.addComponent(leaveBtn)
+							.addGap(34)
+							.addComponent(btnDelete)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(btnBack))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -164,7 +180,7 @@ public class joinPanel extends JPanel {
 								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(44)
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(98, Short.MAX_VALUE))
+					.addContainerGap(92, Short.MAX_VALUE))
 		);
 
 
