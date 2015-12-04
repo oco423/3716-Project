@@ -11,6 +11,7 @@ public class UI {
 			public void run() {
 				StudentSys studentManager = new StudentSys();
 				SocietySys societyManager = new SocietySys();
+
 				try {
 
 					societyManager.loadSocietyList();
