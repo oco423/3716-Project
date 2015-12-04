@@ -36,6 +36,7 @@ public class testUI extends JFrame {
 	static electionPanel elecP;
 	static stuCreatePanel stuP;
 	static eventPanel eventP;
+	static createEventPanel createEP;
 	private JMenuItem jMenuItem1;
 	private JoinFrame joinFrame;
 	private CreateFrame createFrame;
@@ -126,6 +127,8 @@ public class testUI extends JFrame {
 		getContentPane().add(stuP);
 		eventP = new eventPanel(socList, stuList);
 		getContentPane().add(eventP);
+		createEP = new createEventPanel(socList, stuList);
+		getContentPane().add(createEP);
 		
 		//loginP.setVisible(true);
 		socP.setVisible(false);
@@ -135,6 +138,7 @@ public class testUI extends JFrame {
 		elecP.setVisible(false);
 		stuP.setVisible(false);
 		eventP.setVisible(false);
+		createEP.setVisible(false);
 		pack();
 	}
 

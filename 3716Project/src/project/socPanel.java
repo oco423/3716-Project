@@ -122,6 +122,7 @@ groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 					model1.addElement(ev.getName());
 				}
 				testUI.eventP.list.setModel(model1);
+				testUI.createEP.lblEventCreationFor.setText("Event Creation for " + testUI.socP.s.getName());
 			}
 		});
 		groupLayout.setVerticalGroup(
