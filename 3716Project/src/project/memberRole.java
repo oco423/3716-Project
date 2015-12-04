@@ -2,7 +2,8 @@
 package project;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class memberRole implements Serializable {
 	/* includes all methods that society members have permission to execute in
@@ -30,14 +31,19 @@ public class memberRole implements Serializable {
     }
     void vote(Society soc, Student you, Student them) throws MemberPermissionException{
     	if (them.getMemberRole(soc).isEligible() == false){
-    		System.out.println("That student has not declared themselves eligible, thus you cannot vote for them.");
+			JOptionPane.showMessageDialog(null,
+					"That student has not declared themselves eligible, thus you cannot vote for them.", "Error",
+					JOptionPane.ERROR_MESSAGE);
     		return;
     	}
     	if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
-    		System.out.println("You cannot vote more than once per election.");
+			JOptionPane.showMessageDialog(null, "You cannot vote more than once per election.", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			System.out.println();
     		return;
     	}
     	soc.updateVote(you, them);
+		JOptionPane.showMessageDialog(null, "You have voted.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 	void Leave(Society soc){
 		//memberRole must become null

@@ -32,8 +32,7 @@ public class loginPanel extends JPanel {
 						stuList.setStuLoggedIn(s);
 						setVisible(false);
 						testUI.mainP.setVisible(true);
-						testUI.mainP.list.revalidate();
-						testUI.mainP.list.repaint();
+
 						testUI.mainP.revalidate();
 						testUI.mainP.repaint();
 						testUI.mainP.updateUI();

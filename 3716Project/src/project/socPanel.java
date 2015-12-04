@@ -1,23 +1,27 @@
 package project;
 
-import javax.swing.JPanel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class socPanel extends JPanel{
 	
+	JList list = new JList();
 	Society s;
 	JLabel label = new JLabel("<Society name>");
 	JLabel label_1 = new JLabel("<description>");
+	JLabel label_2 = new JLabel("<contact info>");
+	JLabel lblNewLabel = new JLabel("<major>");
 	
 	public socPanel(SocietySys socList, StudentSys stuList, Student stu) {
 		socList.loadSocietyList();
@@ -25,7 +29,7 @@ public class socPanel extends JPanel{
 		for (Society soc : socList.getSocietyList()) {
 			if (soc.getName().equalsIgnoreCase(label.getText())) {
 				s = soc;
-				testUI.socP.label_1.setText(s.getDescription());
+
 				repaint();
 				revalidate();
 				updateUI();
@@ -64,38 +68,73 @@ public class socPanel extends JPanel{
 		
 
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		JLabel lblMemberList = new JLabel("Member List");
+		lblMemberList.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(47)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnViewElectionStuff)
-							.addPreferredGap(ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
-							.addComponent(btnBack)
-							.addGap(99))
+							.addGap(47)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(115)
+										.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addGap(47)
+										.addComponent(label, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblMemberList, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(353, Short.MAX_VALUE))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(137)
-					.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(329, Short.MAX_VALUE))
+							.addGap(62)
+							.addComponent(btnViewElectionStuff, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
+					.addGap(96))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(45)
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(45)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addGap(13)
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+							.addGap(144))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblMemberList)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+							.addGap(78)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBack)
-						.addComponent(btnViewElectionStuff))
-					.addGap(71))
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnViewElectionStuff, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+					.addGap(42))
 		);
+		
+
+
+		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
 	}
 	
