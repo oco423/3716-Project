@@ -32,14 +32,14 @@ public class memberRole implements Serializable {
         s.Promote();
     }
     void vote(Society soc, Student you, Student them) throws MemberPermissionException{
-    	if (them.getMemberRole(soc).isEligible() == false){
-			JOptionPane.showMessageDialog(null,
-					"That student has not declared themselves eligible, thus you cannot vote for them.", "Error",
-					JOptionPane.ERROR_MESSAGE);
-    	}else if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
+    	if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
 			JOptionPane.showMessageDialog(null, "You cannot vote more than once per election.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			System.out.println();
+    	}else if (them.getMemberRole(soc).isEligible() == false){
+			JOptionPane.showMessageDialog(null,
+					"That student has not declared themselves eligible, thus you cannot vote for them.", "Error",
+					JOptionPane.ERROR_MESSAGE);
     	}else{
     		soc.updateVote(you, them);
     		JOptionPane.showMessageDialog(null, "You have voted.", "Error", JOptionPane.ERROR_MESSAGE);
