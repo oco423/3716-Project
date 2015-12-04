@@ -22,9 +22,10 @@ public class socPanel extends JPanel{
 	JLabel label_1 = new JLabel("<description>");
 	JLabel label_2 = new JLabel("<contact info>");
 	JLabel lblNewLabel = new JLabel("<major>");
-
+	JLabel lblIsThePresident = new JLabel("<student> is the President");
 
 	private final JButton btnNewButton = new JButton("View Events");
+
 	
 	public socPanel(SocietySys socList, StudentSys stuList, Student stu) {
 		socList.loadSocietyList();
@@ -92,15 +93,18 @@ groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 									.addGroup(groupLayout.createSequentialGroup()
+.addGap(47).addComponent(label,
+												GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createSequentialGroup()
 										.addGap(115)
-										.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addGap(47)
-										.addComponent(label, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblIsThePresident).addComponent(lblNewLabel,
+																GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE))))
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 									.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
 									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblMemberList, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 								.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)))
@@ -113,20 +117,6 @@ groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
 					.addGap(96))
 		);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				testUI.eventP.setVisible(true);
-				testUI.eventP.lblEventsPageFor.setText("Events page for " + testUI.socP.s.getName());
-				testUI.eventP.s = s;
-				DefaultListModel model1 = new DefaultListModel();
-				for (Event ev : (testUI.socP.s.upcomingEvents())) {
-					model1.addElement(ev.getName());
-				}
-				testUI.eventP.list.setModel(model1);
-				testUI.createEP.lblEventCreationFor.setText("Event Creation for " + testUI.socP.s.getName());
-			}
-		});
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -142,8 +132,8 @@ groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 							.addGap(13)
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-							.addGap(144))
-.addGroup(
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblIsThePresident)
+								.addGap(119)).addGroup(
 										groupLayout.createSequentialGroup()
 							.addComponent(lblMemberList)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -157,6 +147,20 @@ groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 										GroupLayout.PREFERRED_SIZE)))
 					.addGap(42))
 		);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				testUI.eventP.setVisible(true);
+				testUI.eventP.lblEventsPageFor.setText("Events page for " + testUI.socP.s.getName());
+				testUI.eventP.s = s;
+				DefaultListModel model1 = new DefaultListModel();
+				for (Event ev : (testUI.socP.s.upcomingEvents())) {
+					model1.addElement(ev.getName());
+				}
+				testUI.eventP.list.setModel(model1);
+				testUI.createEP.lblEventCreationFor.setText("Event Creation for " + testUI.socP.s.getName());
+			}
+		});
 		
 
 

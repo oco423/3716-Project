@@ -90,6 +90,7 @@ public class joinPanel extends JPanel {
 		            testUI.socP.label_1.setText(testUI.socP.s.getDescription());
 		            testUI.socP.label_2.setText(testUI.socP.s.getContact());
 		            testUI.socP.lblNewLabel.setText(testUI.socP.s.getMajor());
+					testUI.socP.lblIsThePresident.setText(testUI.socP.s.getPresident().getName() + " is the president");
 		            testUI.socP.repaint();
 		            testUI.socP.revalidate();
 					testUI.socP.updateUI();
