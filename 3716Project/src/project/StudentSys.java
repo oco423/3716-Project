@@ -70,7 +70,8 @@ InputStream file = new FileInputStream(fileName);
 			      //display its data
 			for (Student s : stuList) {
 
-				System.out.println("Recovered Student: " + s.getName()); // for
+				// System.out.println("Recovered Student: " + s.getName()); //
+				// for
 																			// testing
 																			// purposes
 			      }

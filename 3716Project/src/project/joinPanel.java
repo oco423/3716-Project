@@ -83,6 +83,7 @@ public class joinPanel extends JPanel {
 						model.addElement(s.getName());
 					}
 					testUI.socP.list.setModel(model);
+
 		           // testUI.socP.s = socList.getSociety((String) listt.getSelectedValue());
 		            testUI.socP.label.setText(testUI.socP.s.getName());
 		            testUI.socP.label_1.setText(testUI.socP.s.getDescription());

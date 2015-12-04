@@ -22,10 +22,13 @@ public class socPanel extends JPanel{
 	JLabel label_1 = new JLabel("<description>");
 	JLabel label_2 = new JLabel("<contact info>");
 	JLabel lblNewLabel = new JLabel("<major>");
+	private final JButton btnNewButton = new JButton("View Events");
 	
 	public socPanel(SocietySys socList, StudentSys stuList, Student stu) {
 		socList.loadSocietyList();
 		stuList.loadStuList();
+
+
 		for (Society soc : socList.getSocietyList()) {
 			if (soc.getName().equalsIgnoreCase(label.getText())) {
 				s = soc;
@@ -79,8 +82,8 @@ public class socPanel extends JPanel{
 		lblMemberList.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
+				.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(47)
@@ -102,16 +105,33 @@ public class socPanel extends JPanel{
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(62)
 							.addComponent(btnViewElectionStuff, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+								.addGap(27)
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
 							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
 					.addGap(96))
 		);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				testUI.eventP.setVisible(true);
+				testUI.eventP.lblEventsPageFor.setText("Events page for " + testUI.socP.s.getName());
+				testUI.eventP.s = s;
+				DefaultListModel model1 = new DefaultListModel();
+				for (Event ev : (testUI.socP.s.upcomingEvents())) {
+					model1.addElement(ev.getName());
+				}
+				testUI.eventP.list.setModel(model1);
+			}
+		});
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+.addGap(
+								45)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(45)
 							.addComponent(label, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
@@ -120,15 +140,18 @@ public class socPanel extends JPanel{
 							.addGap(13)
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 							.addGap(144))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addContainerGap()
+.addGroup(
+										groupLayout.createSequentialGroup()
 							.addComponent(lblMemberList)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
 							.addGap(78)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnViewElectionStuff, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+								.addComponent(btnViewElectionStuff, GroupLayout.PREFERRED_SIZE, 47,
+										GroupLayout.PREFERRED_SIZE)))
 					.addGap(42))
 		);
 		

@@ -71,7 +71,8 @@ InputStream file = new FileInputStream(fileName);
 			      //display its data
 			      for(Society s : societyList ){
 
-				System.out.println("Recovered society: " + s.getName()); // for
+				// System.out.println("Recovered society: " + s.getName()); //
+				// for
 																			// testing
 																			// purposes
 			      }
