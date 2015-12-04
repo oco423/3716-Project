@@ -47,7 +47,7 @@ public class electionPanel extends JPanel {
 							socList.saveSocietyList();
 							stuList.saveStuList();
 						} catch (MemberPermissionException e) {
-							// TODO Auto-generated catch block
+
 							e.printStackTrace();
 						}
 				

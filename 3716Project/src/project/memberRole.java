@@ -11,8 +11,6 @@ public class memberRole implements Serializable {
 	 * @author Sam
 	 */
 	
-	// Scanner in = new Scanner(System.in);
-	
 	private boolean eligible;
 	
 	void Declare(Society soc, Student you){
