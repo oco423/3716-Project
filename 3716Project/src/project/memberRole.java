@@ -16,6 +16,9 @@ public class memberRole implements Serializable {
 	private boolean eligible;
 	
 	void Declare(Society soc, Student you){
+		if (eligible == true){
+			return;
+		}
 		eligible = true;
 		soc.addToBallot(you);
 	}
