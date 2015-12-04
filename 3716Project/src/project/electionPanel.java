@@ -65,6 +65,8 @@ public class electionPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				testUI.socP.setVisible(true);
+				socList.loadSocietyList();
+				testUI.socP.lblIsThePresident.setText(soc.getPresident().getName() + " is the president");
 			}
 		});
 		
@@ -115,8 +117,11 @@ public class electionPanel extends JPanel {
 
 				try {
 					soc.haveElection();
+
+					socList.saveSocietyList();
+					socList.loadSocietyList();
 				} catch (MemberPermissionException e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				}
 			}
