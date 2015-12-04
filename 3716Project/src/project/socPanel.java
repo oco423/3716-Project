@@ -22,6 +22,8 @@ public class socPanel extends JPanel{
 	JLabel label_1 = new JLabel("<description>");
 	JLabel label_2 = new JLabel("<contact info>");
 	JLabel lblNewLabel = new JLabel("<major>");
+
+
 	private final JButton btnNewButton = new JButton("View Events");
 	
 	public socPanel(SocietySys socList, StudentSys stuList, Student stu) {

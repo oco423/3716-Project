@@ -24,6 +24,7 @@ public class joinPanel extends JPanel {
 	JList list = new JList();
 	JScrollPane scrollPane = new JScrollPane();
 	private JTextField textField;
+	DefaultListModel model = new DefaultListModel();
 	public joinPanel(final SocietySys socList, final StudentSys stuList, final Student stu) {
 
 
@@ -182,6 +183,11 @@ public class joinPanel extends JPanel {
 				String Stu = textField.getText();
 				Society s = socList.getSociety(str);
 				socList.deleteSociety(s);
+				DefaultListModel model1 = new DefaultListModel();
+				for (Society soc : socList.getSocietyList()) {
+					model1.addElement(soc.getName());
+				}
+				testUI.joinP.list.setModel(model1);
 				System.out.println(s.getName() + " deleted");
 				
 			}
@@ -252,11 +258,7 @@ groupLayout.createParallelGroup(Alignment.LEADING)
 
 
 		scrollPane.setViewportView(list);
-		DefaultListModel model = new DefaultListModel();
-		for (Society s : socList.getSocietyList()) {
-			model.addElement(s.getName());
-		}
-		list.setModel(model);
+
 		setLayout(groupLayout);
 
 	}

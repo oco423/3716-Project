@@ -22,7 +22,24 @@ public class eventPanel extends JPanel {
 	JTextArea textArea = new JTextArea();
 	Society s;
 	private final JButton btnNewButton_1 = new JButton("Create Event");
+	private final JTextArea textArea_1 = new JTextArea();
+	private final JTextArea textArea_2 = new JTextArea();
+	private final JTextArea textArea_3 = new JTextArea();
+	private final JButton btnDelete = new JButton("Delete");
 	public eventPanel(SocietySys socList, StudentSys stuList) {
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String str = (String) list.getSelectedValue();
+
+
+				s.cancelEvent(str);
+				System.out.println(str + " deleted");
+				repaint();
+				revalidate();
+				updateUI();
+
+			}
+		});
 		socList.loadSocietyList();
 		stuList.loadStuList();
 
@@ -43,23 +60,63 @@ public class eventPanel extends JPanel {
 		
 		textArea.setEditable(false);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(52)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
+				.createSequentialGroup().addGap(52)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+						.createSequentialGroup().addGap(10)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(10)
-										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 236,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(54).addComponent(textArea, GroupLayout.PREFERRED_SIZE, 174,
-												GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup().addGap(70)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(textArea_3, GroupLayout.PREFERRED_SIZE, 148,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 148,
+														GroupLayout.PREFERRED_SIZE)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+														.addComponent(textArea_1).addComponent(textArea,
+																GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
+								.addGroup(groupLayout.createSequentialGroup().addGap(31).addComponent(btnDelete,
+										GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))))
 						.addComponent(lblEventsPageFor, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(245, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING,
+				.addContainerGap(255, Short.MAX_VALUE)).addGroup(
 						groupLayout.createSequentialGroup().addGap(116)
 								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 112,
 										GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
 						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 						.addGap(164)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(24)
+										.addComponent(lblEventsPageFor, GroupLayout.PREFERRED_SIZE, 54,
+												GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 346,
+														Short.MAX_VALUE)
+												.addGap(67))
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 41,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 37,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 37,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(textArea_3, GroupLayout.PREFERRED_SIZE, 37,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(53)
+										.addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 36,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)).addGap(36)));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -67,28 +124,6 @@ public class eventPanel extends JPanel {
 				testUI.createEP.s = s;
 			}
 		});
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(24)
-										.addComponent(lblEventsPageFor, GroupLayout.PREFERRED_SIZE, 54,
-												GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-.addGap(18)
-												.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 346,
-														Short.MAX_VALUE)
-												.addGap(65))
-						.addGroup(groupLayout.createSequentialGroup()
-.addGap(80)
-										.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 163,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)))
-				.addGap(2)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)).addGap(36)));
 
 
 		scrollPane.setViewportView(list);

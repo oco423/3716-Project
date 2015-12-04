@@ -17,7 +17,7 @@ public class mainPanel extends JPanel {
 
 	JButton joinButton = new JButton("Join Society");
 	JButton createButton = new JButton("Create Society");
-	DefaultListModel model = new DefaultListModel();
+
 
 
 	public mainPanel(final SocietySys socList, StudentSys stuList, Student stu) {
@@ -37,6 +37,11 @@ public class mainPanel extends JPanel {
 				socList.loadSocietyList();
 				setVisible(false);
 				testUI.joinP.setVisible(true);
+				DefaultListModel model1 = new DefaultListModel();
+				for (Society s : socList.getSocietyList()) {
+					model1.addElement(s.getName());
+				}
+				testUI.joinP.list.setModel(model1);
 				testUI.joinP.scrollPane.repaint();
 				testUI.joinP.scrollPane.revalidate();
 				testUI.joinP.list.repaint();
@@ -62,10 +67,7 @@ public class mainPanel extends JPanel {
 		createButton.setBounds(631, 232, 180, 80);
 		this.add(createButton);
 
-		for (Society s : socList.getSocietyList()) {
-			if (s.isMember(stu))
-				model.addElement(s.getName());
-		}
+
 
 		JButton btnCreateAStudent = new JButton("Create a student");
 		btnCreateAStudent.addActionListener(new ActionListener() {
