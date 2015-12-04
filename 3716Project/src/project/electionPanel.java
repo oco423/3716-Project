@@ -30,6 +30,7 @@ public class electionPanel extends JPanel {
 		lblMemberList.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		socList.loadSocietyList();
 		stuList.loadStuList();
+		btnDecalreEligibleTo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnDecalreEligibleTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (textField.getText().equals("")) {
@@ -61,6 +62,7 @@ public class electionPanel extends JPanel {
 		lblElectionsFor.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -73,6 +75,7 @@ public class electionPanel extends JPanel {
 
 		
 		JButton btnVote = new JButton("Vote");
+		btnVote.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (textField.getText().equals("")) {
@@ -112,6 +115,7 @@ public class electionPanel extends JPanel {
 		textField.setColumns(10);
 
 		JButton btnNewButton = new JButton("Hold Election");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -128,14 +132,10 @@ public class electionPanel extends JPanel {
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(Alignment.TRAILING,
-										groupLayout.createSequentialGroup().addGap(68)
-												.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 107,
-														GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
-										.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 120,
-												GroupLayout.PREFERRED_SIZE).addGap(99))
+groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(68)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE).addGap(273)
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE).addGap(99))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(43)
 .addGroup(groupLayout
