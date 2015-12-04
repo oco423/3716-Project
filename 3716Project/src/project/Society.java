@@ -63,22 +63,27 @@ import java.util.ArrayList;
 public class Society implements Serializable {
 	/* includes all information about a society and many methods to change and
 	 * update said information.
-	 * @author Sam, Osede, Lucas, Shehzaib
+	 * @author Sam, Shehzaib, Osede, Lucas
 	 */
     
-	// Scanner in = new Scanner(System.in);
+	// general society info
 	private String name;
     private String contact_info;
     private String major;
     private double fee = 0;
     private String description;
+    private boolean sanctioned;
+    
+    // society contents, including vote counting and tracking
+    // and a list of eligible candidates
     private ArrayList<Student> members;
     private ArrayList<Student> board;
     private ArrayList<Boolean> voted;
     private ArrayList<Integer> votes;
     private ArrayList<Student> ballot;
     private Student president;
-    private boolean sanctioned;
+    
+    // additional society contents and info
     private ArrayList<Meeting> meetings;
     private ArrayList<Event> events;
     
@@ -119,16 +124,29 @@ public class Society implements Serializable {
 		major = null;
 	}
 	
+//************ Accessors and mutators for Society information ***********
 	String getName(){
 		return name;
+	}
+	
+	void setName(String n){
+		name = n;
 	}
 	
 	String getContact(){
 		return contact_info;
 	}
 	
+	void setContact(String c){
+		contact_info = c;
+	}
+	
 	String getMajor(){
 		return major;
+	}
+	
+	void setMajor(String m){
+		major = m;
 	}
 	
 	public double getFee() {
@@ -146,6 +164,12 @@ public class Society implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	boolean getSanctionStatus(){
+		return sanctioned;
+	}
+	
+//************ Accessors and mutators for Society contents ***********
 	
 	ArrayList<Student> getMembers(){
         return members;
@@ -189,24 +213,6 @@ public class Society implements Serializable {
 		}
 	}
 	
-	int getVotesFor(Student s) throws MemberPermissionException{
-    	return votes.get(getMembers().indexOf(s));
-    }
-	
-	void updateVote(Student you, Student them) throws MemberPermissionException{
-		voted.set(getMembers().indexOf(you), true);
-		votes.set(getMembers().indexOf(them), votes.get(getMembers().indexOf(them))+1);
-	}
-	
-	void resetVotes(){
-		for (boolean b:voted){
-			b = false;
-		}
-		for (int x:votes){
-			x = 0;
-		}
-	}
-	
 	ArrayList<Student> getBallot(){
 		return ballot;
 	}
@@ -238,21 +244,34 @@ public class Society implements Serializable {
 		president = s;
 	}
 	
-	boolean getSanctionStatus(){
-		return sanctioned;
+//************ Advanced Society methods and functions ***********
+
+//************ Election methods and functions ***********
+	
+	int getVotesFor(Student s) throws MemberPermissionException{
+    	return votes.get(getMembers().indexOf(s));
+    }
+	
+	void updateVote(Student you, Student them) throws MemberPermissionException{
+		voted.set(getMembers().indexOf(you), true);
+		votes.set(getMembers().indexOf(them), votes.get(getMembers().indexOf(them))+1);
 	}
 	
-	void setName(String n){
-		name = n;
+	void haveElection() throws MemberPermissionException{
+		//called by presidentRole.callElection
+        Election e = new Election(this);
+    }
+	
+	void resetVotes(){
+		for (boolean b:voted){
+			b = false;
+		}
+		for (int x:votes){
+			x = 0;
+		}
 	}
 	
-	void setContact(String c){
-		contact_info = c;
-	}
-	
-	void setMajor(String m){
-		major = m;
-	}
+//************ Meetings and Events methods and functions ***********
 	
 	ArrayList<Meeting> upcomingMeetings(){
 		return meetings;
@@ -260,6 +279,11 @@ public class Society implements Serializable {
 	
 	void addMeeting(Meeting m){
 		meetings.add(m);
+	}
+	
+	void haveMeeting(String date, String time, String location, String purpose){
+		 Meeting m = new Meeting(date, time, location, purpose);
+		 addMeeting(m);
 	}
 	
 	void cancelMeeting(String date, String time, String location){
@@ -280,6 +304,11 @@ public class Society implements Serializable {
 		events.add(e);
 	}
 	
+	void haveEvent(String name, String date, String time, String location, String purpose){
+		 Event e = new Event(name, date, time, location, purpose);
+		 addEvent(e);
+	 }
+	
 	void cancelEvent(String name){
 		Event x = new Event();
 		for (Event e:upcomingEvents()){
@@ -290,12 +319,15 @@ public class Society implements Serializable {
 		events.remove(x);
 	}
 	
+//************ Members and Board Members functions and handling ***********
+
 	void addMember(Student s){
 		s.setMemberRole(new memberRole());
         members.add(s);
         voted.add(false);
         votes.add(0);
         System.out.println(s.getName() + "'s application to join " + this.getName() + " has been reviewed and accepted.");
+        Sanction();
     }
 	
 	void addBoardMember(Student s){
@@ -320,6 +352,8 @@ public class Society implements Serializable {
         }
 	}
 	
+//************ Other Society functions ***********
+
 	void Sanction(){
 		if (members.size() >= 20){
 			sanctioned = true;
@@ -330,24 +364,9 @@ public class Society implements Serializable {
 	
 	void Promote(){
 		//Post society poster (filename) on TV screens in University Centre and around campus
-		//Possible emails to students who may be interested
+		//Emails to students who may be interested
         System.out.println("Society created and promoted!");
 	}
-	
-    void haveElection() throws MemberPermissionException{
-        Election e = new Election(this);
-    }
-	
-	
-	 void haveMeeting(String date, String time, String location, String purpose){
-		 Meeting m = new Meeting(date, time, location, purpose);
-		 addMeeting(m);
-	 }
-	
-	 void haveEvent(String name, String date, String time, String location, String purpose){
-		 Event e = new Event(name, date, time, location, purpose);
-		 addEvent(e);
-	 }
 	 
 	 /* 
 	 * void collectFees(){ //optional call if (sanctioned){

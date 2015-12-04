@@ -3,6 +3,11 @@ package project;
 import java.io.Serializable;
 
 public class presidentRole implements Serializable {
+	/* includes all methods the president of a Society can call or execute.
+	 * any student can call these functions if they are the president of that
+	 * particular society. See MemberPermissionException.java
+	 * @author Sam, Osede
+	 */
 	
 	void setSocietyFee(Society soc, double f){
 		soc.setFee(f);

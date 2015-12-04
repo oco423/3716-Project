@@ -2,6 +2,13 @@ package project;
 import java.io.Serializable;
 
 public class Meeting implements Serializable{
+	/* Meeting is an object associated with a society. A society
+	 * can have any number of meetings. Meetings have the basic
+	 * information originally set out by the client, and can be
+	 * created into a society or cancelled at any time
+	 * by a board member or the president.
+	 * @author Sam, Osede
+	 */
     
 	private String date;
     private String time;

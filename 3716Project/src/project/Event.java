@@ -3,8 +3,14 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Event extends Meeting implements Serializable{
+	/* Event is an extension of Meeting. An event behaves in the same
+	 * fashion as a meeting, but also includes an event name. A society
+	 * also has a list of events, separate from its list of meetings.
+	 * Events can be created or cancelled at any time by a board member
+	 * or the president.
+	 * @author Osede, Sam
+	 */
     
-    //Scanner in = new Scanner(System.in);
 	private String name;
     
 	Event(){

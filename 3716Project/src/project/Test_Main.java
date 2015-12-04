@@ -8,7 +8,24 @@ import java.util.ArrayList;
 public class Test_Main{
 	/* a console-focused testing class. Can be edited a number of ways to test the basic
 	 * methods of society and the various roles.
-	 * @author Sam
+	 * @author everyone
+	 * 
+	 * in its current state, this tester will run and the following will occur:
+	 * 4 students will be created, based upon the 4 members of our group.
+	 * soc1, a new society, will be created. stu1 is the creator (president)
+	 * and all other students are added to it.
+	 * stu4 is appointed to the board of soc1 by stu1
+	 * all students declare themselves eligible except for stu2.
+	 * stu2 attempts to vote for themselves and gets an error because of
+	 * his eligibility.
+	 * all students vote.
+	 * stu4 withdraws his candidacy and stu2 declares his.
+	 * stu2 votes for himself. stu3 attempts to vote again and is given an error
+	 * because you may only vote once per electon.
+	 * an election is called and stu3 is now the president of soc1.
+	 * 2 meetings and 1 event are created by stu3 and stu4. one is cancelled.
+	 * all the students are saved to the file.
+	 * a second society is created and both are save to that file.
 	 */
 	
 	public static void main(String[] args) throws MemberPermissionException{
@@ -27,9 +44,9 @@ public class Test_Main{
 		String major = "Computer Science";
 		int age = 20;
 		Student stu1 = new Student(name, major, age, id);
-		Student stu2 = new Student("Sam", "Computer Sciencer", 21, 4356);
+		Student stu2 = new Student("Sam", "Computer Science", 21, 4356);
 		Society soc1 = new Society(stu1, "earth science club", "testing", "testing", "testing");
-		Student stu4 = new Student("Kelsi", "Psychology", 19, 37373);
+		Student stu4 = new Student("Shehzaib", "Computer Science", 20, 37373);
 		
 		//Society soc2 = new Society(stu2, "cs club", "testing", "testing", "testing");
 		Student stu3 = new Student("Osede", "Computer Science", 21, 45356);

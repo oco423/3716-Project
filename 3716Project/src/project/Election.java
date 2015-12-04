@@ -3,9 +3,12 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Election implements Serializable{
-	/* includes all methods to create a ballot of eligible students and count votes.
-	 * election will change the president upon the conclusion of voting (if necessary).
-	 * election will not change the board members.
+	/* includes all methods to display the ballot of eligible members and conduct a vote.
+	 * Election will change the president upon the conclusion of voting (if necessary).
+	 * Election will not change the board members.
+	 * At the moment, in the event of a tie, the first person to have achieved
+	 * the highest number of votes is the winner. Ties can be changed to be dealt
+	 * with in other ways.
 	 * @author Sam
 	 */
     
