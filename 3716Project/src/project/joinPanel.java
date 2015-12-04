@@ -2,6 +2,8 @@ package project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -18,7 +20,7 @@ import javax.swing.JTextField;
 
 public class joinPanel extends JPanel {
 
-	private JList list = new JList();
+	JList list = new JList();
 	private JTextField textField;
 	public joinPanel(final SocietySys socList, final StudentSys stuList, final Student stu) {
 
@@ -57,6 +59,30 @@ public class joinPanel extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 				}			
 			}
+		});
+		list.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList listt = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = listt.locationToIndex(evt.getPoint());
+		            setVisible(false);
+		            testUI.socP.setVisible(true);
+		            testUI.socP.setSociety(socList.getSociety((String) listt.getSelectedValue()));
+		           // testUI.socP.s = socList.getSociety((String) listt.getSelectedValue());
+		            testUI.socP.label.setText(testUI.socP.s.getName());
+		            testUI.socP.label_1.setText(testUI.socP.s.getDescription());
+		            testUI.socP.repaint();
+		            testUI.socP.revalidate();
+		            testUI.socP.updateUI();
+		            
+		        } else if (evt.getClickCount() == 3) {
+
+		            // Triple-click detected
+		            int index = listt.locationToIndex(evt.getPoint());
+		        }
+		    }
 		});
 
 		JButton leaveBtn = new JButton("Leave");

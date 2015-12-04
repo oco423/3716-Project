@@ -364,6 +364,13 @@ public class Society implements Serializable {
 		}
 		return false;
 	}
+	public Student getStudent (String s) {
+		for (Student stu : members) {
+			if (stu.getName().equalsIgnoreCase(s))
+				return stu;
+		}
+		return null;
+	}
 
 	public void calculateFee() throws MemberPermissionException{
 		double newFee = 0;

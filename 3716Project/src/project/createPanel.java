@@ -96,6 +96,7 @@ public class createPanel extends JPanel {
 						testUI.joinP.revalidate();
 						testUI.joinP.updateUI();
 						JOptionPane.showMessageDialog(null, "Society '" + textField.getText() + "' successfully created");
+						testUI.joinP.list.updateUI();
 						setVisible(false);
 					}
 				}

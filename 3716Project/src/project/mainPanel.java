@@ -40,6 +40,8 @@ public class mainPanel extends JPanel {
 
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				socList.loadSocietyList();
+				
 				setVisible(false);
 				testUI.joinP.setVisible(true);
 			}
@@ -51,6 +53,9 @@ public class mainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				testUI.createP.setVisible(true);
+				testUI.joinP.list.repaint();
+				testUI.joinP.list.revalidate();
+				testUI.joinP.list.updateUI();
 			}
 		});
 
