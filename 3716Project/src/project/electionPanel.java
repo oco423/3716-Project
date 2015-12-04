@@ -110,14 +110,29 @@ public class electionPanel extends JPanel {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+
+		JButton btnNewButton = new JButton("Hold Election");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					soc.haveElection();
+				} catch (MemberPermissionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 						groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-.addContainerGap(483, Short.MAX_VALUE)
+								.addGroup(Alignment.TRAILING,
+										groupLayout.createSequentialGroup().addGap(68)
+												.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 107,
+														GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
 										.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 120,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(99))
+												GroupLayout.PREFERRED_SIZE).addGap(99))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(43)
 .addGroup(groupLayout
@@ -133,13 +148,13 @@ public class electionPanel extends JPanel {
 										GroupLayout.PREFERRED_SIZE))
 								.addContainerGap(346, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
-.addGroup(groupLayout
-								.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(lblMemberList, GroupLayout.PREFERRED_SIZE, 136,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED, 227, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblMemberList, GroupLayout.PREFERRED_SIZE, 136,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 227, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup().addComponent(lblYourName)
+.addComponent(lblYourName)
 										.addPreferredGap(ComponentPlacement.UNRELATED)))
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 131,
@@ -158,7 +173,8 @@ public class electionPanel extends JPanel {
 								.addComponent(lblMemberList, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-								.addGap(87))
+								.addGap(18)
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 .addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -170,8 +186,8 @@ public class electionPanel extends JPanel {
 								.addGap(101)
 								.addComponent(btnVote, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-								.addGap(31))))
+								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)))
+				.addGap(31))
 		);
 		
 
