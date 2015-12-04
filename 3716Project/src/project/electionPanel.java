@@ -39,8 +39,8 @@ public class electionPanel extends JPanel {
 					String Stu = textField.getText();
 					for (Student student : soc.getMembers()) {
 						if (Stu.equalsIgnoreCase(student.getName())) {
-						s1 = student;
-						
+							s1 = student;
+						}
 					}			
 						try {
 							s1.getMemberRole(soc).Declare(soc, s1);
@@ -53,9 +53,7 @@ public class electionPanel extends JPanel {
 				
 					}
 				}
-			}
-
-		});
+			});
 		
 		socList.loadSocietyList();
 		stuList.loadStuList();
