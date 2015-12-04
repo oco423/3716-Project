@@ -15,6 +15,7 @@ public class Election implements Serializable{
 	Election(Society soc) throws MemberPermissionException{
 		soc.showBallot();
 		conductVote(soc);
+		soc.resetVotes();
 	}
 	
 	void conductVote(Society soc) throws MemberPermissionException{
@@ -52,6 +53,5 @@ public class Election implements Serializable{
         	soc.getPresident().setBoardRole(null);
         	soc.setPresident(winner);
         }
-        soc.resetVotes();
     }
 }

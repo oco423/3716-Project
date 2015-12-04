@@ -211,6 +211,7 @@ public class Society implements Serializable {
 		for (int x:votes){
 			x = 0;
 		}
+		ballot = new ArrayList<Student>();
 	}
 	
 //************ Meetings and Events methods and functions ***********

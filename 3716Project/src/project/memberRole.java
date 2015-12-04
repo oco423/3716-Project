@@ -37,16 +37,14 @@ public class memberRole implements Serializable {
 			JOptionPane.showMessageDialog(null,
 					"That student has not declared themselves eligible, thus you cannot vote for them.", "Error",
 					JOptionPane.ERROR_MESSAGE);
-    		return;
-    	}
-    	if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
+    	}else if (soc.getVoted().get(soc.getMembers().indexOf(you)) == true){
 			JOptionPane.showMessageDialog(null, "You cannot vote more than once per election.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			System.out.println();
-    		return;
+    	}else{
+    		soc.updateVote(you, them);
+    		JOptionPane.showMessageDialog(null, "You have voted.", "Error", JOptionPane.ERROR_MESSAGE);
     	}
-    	soc.updateVote(you, them);
-		JOptionPane.showMessageDialog(null, "You have voted.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 	void Leave(Society soc){
 		//memberRole must become null
