@@ -24,7 +24,6 @@ public class memberRole implements Serializable {
 	}
     void Withdraw(Society soc, Student you){
         eligible = false;
-        soc.removeFromBallot(you);
     }
     boolean isEligible(){
     	return eligible;

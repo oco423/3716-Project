@@ -204,12 +204,15 @@ public class Society implements Serializable {
         Election e = new Election(this);
     }
 	
-	void resetVotes(){
-		for (boolean b:voted){
-			b = false;
+	void resetVotes() throws MemberPermissionException{
+		for (int i=0; i<voted.size(); i++){
+			voted.set(i, false);
 		}
-		for (int x:votes){
-			x = 0;
+		for (int i=0; i<votes.size(); i++){
+			votes.set(i, 0);
+		}
+		for (Student s: members){
+			s.getMemberRole(this).Withdraw(this, s);
 		}
 		ballot = new ArrayList<Student>();
 	}
